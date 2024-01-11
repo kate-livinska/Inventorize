@@ -1,0 +1,446 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		411D518C2B4D3EF8008650EF /* ScannyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411D518B2B4D3EF8008650EF /* ScannyApp.swift */; };
+		411D518E2B4D3EF8008650EF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411D518D2B4D3EF8008650EF /* ContentView.swift */; };
+		411D51902B4D3EF9008650EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 411D518F2B4D3EF9008650EF /* Assets.xcassets */; };
+		411D51932B4D3EF9008650EF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 411D51922B4D3EF9008650EF /* Preview Assets.xcassets */; };
+		411D519A2B4D4164008650EF /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411D51992B4D4164008650EF /* LoginView.swift */; };
+		411D519E2B4D4366008650EF /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 411D519D2B4D4366008650EF /* Localizable.xcstrings */; };
+		411D51A12B4D4B2B008650EF /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411D51A02B4D4B2B008650EF /* StringExtensions.swift */; };
+		411D51A72B4D56A5008650EF /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411D51A62B4D56A5008650EF /* LoginViewModel.swift */; };
+		411D51A92B4D57AF008650EF /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411D51A82B4D57AE008650EF /* LoginRequest.swift */; };
+		411D51AB2B4D5802008650EF /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411D51AA2B4D5802008650EF /* LoginResponse.swift */; };
+		411D51AD2B4D587B008650EF /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411D51AC2B4D587B008650EF /* LoginManager.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		411D51882B4D3EF8008650EF /* Scanny.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scanny.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		411D518B2B4D3EF8008650EF /* ScannyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannyApp.swift; sourceTree = "<group>"; };
+		411D518D2B4D3EF8008650EF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		411D518F2B4D3EF9008650EF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		411D51922B4D3EF9008650EF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		411D51992B4D4164008650EF /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		411D519D2B4D4366008650EF /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		411D51A02B4D4B2B008650EF /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
+		411D51A62B4D56A5008650EF /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		411D51A82B4D57AE008650EF /* LoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
+		411D51AA2B4D5802008650EF /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
+		411D51AC2B4D587B008650EF /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		411D51852B4D3EF8008650EF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		411D517F2B4D3EF8008650EF = {
+			isa = PBXGroup;
+			children = (
+				411D518A2B4D3EF8008650EF /* Scanny */,
+				411D51892B4D3EF8008650EF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		411D51892B4D3EF8008650EF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				411D51882B4D3EF8008650EF /* Scanny.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		411D518A2B4D3EF8008650EF /* Scanny */ = {
+			isa = PBXGroup;
+			children = (
+				411D51A22B4D5453008650EF /* Models */,
+				411D51A32B4D5461008650EF /* Views */,
+				411D51A42B4D5468008650EF /* ViewModels */,
+				411D519F2B4D4AFA008650EF /* Utilities */,
+				411D519B2B4D4303008650EF /* SupportingFiles */,
+				411D518D2B4D3EF8008650EF /* ContentView.swift */,
+				411D518B2B4D3EF8008650EF /* ScannyApp.swift */,
+				411D51A52B4D5475008650EF /* Tests */,
+				411D518F2B4D3EF9008650EF /* Assets.xcassets */,
+				411D51912B4D3EF9008650EF /* Preview Content */,
+			);
+			path = Scanny;
+			sourceTree = "<group>";
+		};
+		411D51912B4D3EF9008650EF /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				411D51922B4D3EF9008650EF /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		411D519B2B4D4303008650EF /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				411D519C2B4D4312008650EF /* Localization */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		411D519C2B4D4312008650EF /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				411D519D2B4D4366008650EF /* Localizable.xcstrings */,
+			);
+			path = Localization;
+			sourceTree = "<group>";
+		};
+		411D519F2B4D4AFA008650EF /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				411D51A02B4D4B2B008650EF /* StringExtensions.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		411D51A22B4D5453008650EF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				411D51A82B4D57AE008650EF /* LoginRequest.swift */,
+				411D51AA2B4D5802008650EF /* LoginResponse.swift */,
+				411D51AC2B4D587B008650EF /* LoginManager.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		411D51A32B4D5461008650EF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				411D51992B4D4164008650EF /* LoginView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		411D51A42B4D5468008650EF /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				411D51A62B4D56A5008650EF /* LoginViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		411D51A52B4D5475008650EF /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		411D51872B4D3EF8008650EF /* Scanny */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 411D51962B4D3EF9008650EF /* Build configuration list for PBXNativeTarget "Scanny" */;
+			buildPhases = (
+				411D51842B4D3EF8008650EF /* Sources */,
+				411D51852B4D3EF8008650EF /* Frameworks */,
+				411D51862B4D3EF8008650EF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Scanny;
+			productName = Scanny;
+			productReference = 411D51882B4D3EF8008650EF /* Scanny.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		411D51802B4D3EF8008650EF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1520;
+				LastUpgradeCheck = 1520;
+				TargetAttributes = {
+					411D51872B4D3EF8008650EF = {
+						CreatedOnToolsVersion = 15.2;
+					};
+				};
+			};
+			buildConfigurationList = 411D51832B4D3EF8008650EF /* Build configuration list for PBXProject "Scanny" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				nl,
+			);
+			mainGroup = 411D517F2B4D3EF8008650EF;
+			productRefGroup = 411D51892B4D3EF8008650EF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				411D51872B4D3EF8008650EF /* Scanny */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		411D51862B4D3EF8008650EF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				411D51932B4D3EF9008650EF /* Preview Assets.xcassets in Resources */,
+				411D51902B4D3EF9008650EF /* Assets.xcassets in Resources */,
+				411D519E2B4D4366008650EF /* Localizable.xcstrings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		411D51842B4D3EF8008650EF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				411D51A12B4D4B2B008650EF /* StringExtensions.swift in Sources */,
+				411D51AD2B4D587B008650EF /* LoginManager.swift in Sources */,
+				411D519A2B4D4164008650EF /* LoginView.swift in Sources */,
+				411D518E2B4D3EF8008650EF /* ContentView.swift in Sources */,
+				411D51A92B4D57AF008650EF /* LoginRequest.swift in Sources */,
+				411D51A72B4D56A5008650EF /* LoginViewModel.swift in Sources */,
+				411D518C2B4D3EF8008650EF /* ScannyApp.swift in Sources */,
+				411D51AB2B4D5802008650EF /* LoginResponse.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		411D51942B4D3EF9008650EF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		411D51952B4D3EF9008650EF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		411D51972B4D3EF9008650EF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Scanny/Preview Content\"";
+				DEVELOPMENT_TEAM = DZ9576248H;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app needs access to the camera to scan barcodes.";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.gmail-livinska.kateryna.Scanny";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		411D51982B4D3EF9008650EF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Scanny/Preview Content\"";
+				DEVELOPMENT_TEAM = DZ9576248H;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app needs access to the camera to scan barcodes.";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.gmail-livinska.kateryna.Scanny";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		411D51832B4D3EF8008650EF /* Build configuration list for PBXProject "Scanny" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				411D51942B4D3EF9008650EF /* Debug */,
+				411D51952B4D3EF9008650EF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		411D51962B4D3EF9008650EF /* Build configuration list for PBXNativeTarget "Scanny" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				411D51972B4D3EF9008650EF /* Debug */,
+				411D51982B4D3EF9008650EF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 411D51802B4D3EF8008650EF /* Project object */;
+}
