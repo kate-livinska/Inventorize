@@ -1,7 +1,7 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "Hello, World!" : {
+    "Email is not valid." : {
 
     },
     "Login.LoginButton.Title" : {

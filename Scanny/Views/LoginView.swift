@@ -9,8 +9,8 @@ import SwiftUI
 
 struct LoginView: View {
     
-    @ObservedObject var viewModel: LoginViewModel = LoginViewModel()
-    @State private var isEmailValid: Bool = true
+    @ObservedObject var loginVM = LoginViewModel()
+    @State private var isEmailValid = true
     
     var body: some View {
         VStack {
@@ -20,13 +20,13 @@ struct LoginView: View {
                     Text("Login.UsernameField.Title".localized)
                     Spacer()
                 }
-                TextField("Login.UsernameField.Title".localized, text: $viewModel.username, onEditingChanged: { (isChanged) in
+                TextField("Login.UsernameField.Title".localized, text: $loginVM.username, onEditingChanged: { (isChanged) in
                     if !isChanged {
-                        if self.textFieldValidatorEmail(viewModel.username) {
+                        if self.textFieldValidatorEmail(loginVM.username) {
                             self.isEmailValid = true
                         } else {
                             self.isEmailValid = false
-                            viewModel.username = ""
+                            loginVM.username = ""
                         }
                     }
                 })
@@ -46,7 +46,7 @@ struct LoginView: View {
                     Text("Login.PasswordField.Title".localized)
                     Spacer()
                 }
-                SecureField(text: $viewModel.password, prompt: Text("Login.PasswordField.Prompt".localized)) {
+                SecureField(text: $loginVM.password, prompt: Text("Login.PasswordField.Prompt".localized)) {
                     Text("Login.PasswordField.Title".localized)
                 }
                 .textInputAutocapitalization(.never)
@@ -54,7 +54,7 @@ struct LoginView: View {
                 .textFieldStyle(.roundedBorder)
             }.padding()
             
-            Button(action: viewModel.login) {
+            Button(action: loginVM.login) {
                 Text("Login.LoginButton.Title".localized)
                     .frame(maxWidth: .infinity)
                     .padding()
