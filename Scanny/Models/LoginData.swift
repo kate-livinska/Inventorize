@@ -13,7 +13,7 @@ struct LoginRequest: Codable {
 }
 
 struct LoginResponse: Codable {
-    let accessToken: String
+    let token: String
     let message: String?
-    let success: Bool?
+    //let success: Bool?
 }

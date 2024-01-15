@@ -11,7 +11,6 @@ class LoginViewModel: ObservableObject {
     var username = ""
     var password = ""
     @Published var isAuthenticated = false
-    @Published var token = ""
     @Published var orders = [Order]()
     
     func login() {
@@ -36,30 +35,46 @@ class LoginViewModel: ObservableObject {
             
         }
         
+        saveToKeychain(key: username, password: password)
+        
         networkManager.fetchData(request: request) { response in
             switch response {
             case .success(let response):
-                let token = response.accessToken
-                self.token = token
-                print(token)
-                self.fetchOrdersData(with: token)
+                let token = response.token
+                self.saveToKeychain(key: "SkannyToken", password: token)
             case .failure(let error):
                 print("Error: Invalid credentials - \(error.localizedDescription)")
             }
         }
     }
     
+    func saveToKeychain(key: String, password: String) {
+        let passwordAsData = password.data(using: .utf8) ?? Data()
+        do {
+            try KeychainManager.save(
+                service: "Scanny",
+                account: key,
+                password: passwordAsData)
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
+    
+    //must be not in the Login but in scanny model /or orderlist model?
     func fetchOrdersData(with token: String) {
         let networkManager = NetworkManager<OrderResults>()
         
         guard let request = networkManager.createRequest(
             path: K.Networking.ordersPath,
             method: "get",
-            value: token,
+            value: "Bearer \(token)",
             header: K.Networking.ordersHeader
         ) else {
             return
         }
+        
+        //maybe get orders in escaping closure instead of loginView property??
         networkManager.fetchData(request: request) { response in
             switch response {
             case .success(let orders):

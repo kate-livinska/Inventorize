@@ -21,6 +21,18 @@ struct OrdersList<CardContent> {
         }
     }
     
+    func getToken() -> String? {
+        guard let data = KeychainManager.get(
+            service: "Scanny",
+            account: "SkannyToken"
+        ) else {
+            print("Error: Failed to obtain token.")
+            return nil
+        }
+        let token = String(decoding: data, as: UTF8.self)
+        return token
+    }
+    
     struct Card {
         let id: String
         let content: CardContent

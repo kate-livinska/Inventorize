@@ -15,14 +15,13 @@ struct Order: Codable, Identifiable {
     let id: String
 }
 
-struct OrdeDetails: Codable {
+struct OrderDetails: Codable {
     var results: [Item]
 }
 
 struct Item: Codable, Identifiable {
-    let itemName: String
     let id: String
-    let SKU: String
+    let sku: String
     var quantity: Int
-    let boxNumber: String
+    let box: String
 }
