@@ -62,26 +62,5 @@ class LoginViewModel: ObservableObject {
     
     
     //must be not in the Login but in scanny model /or orderlist model?
-    func fetchOrdersData(with token: String) {
-        let networkManager = NetworkManager<OrderResults>()
-        
-        guard let request = networkManager.createRequest(
-            path: K.Networking.ordersPath,
-            method: "get",
-            value: "Bearer \(token)",
-            header: K.Networking.ordersHeader
-        ) else {
-            return
-        }
-        
-        //maybe get orders in escaping closure instead of loginView property??
-        networkManager.fetchData(request: request) { response in
-            switch response {
-            case .success(let orders):
-                self.orders = orders.results
-            case .failure(let error):
-                print("Error: \(error.localizedDescription)")
-            }
-        }
-    }
+    
 }

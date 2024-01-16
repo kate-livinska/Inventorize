@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct ScannyApp: App {
+    @StateObject var scanny = ScannyViewModel()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ScannyView(scannyVM: scanny)
         }
     }
 }
