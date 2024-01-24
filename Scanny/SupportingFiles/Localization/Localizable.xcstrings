@@ -58,6 +58,28 @@
           }
         }
       }
+    },
+    "OrdersListView.Orders.Title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Orders"
+          }
+        }
+      }
+    },
+    "ProgressView.Text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fetching data..."
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

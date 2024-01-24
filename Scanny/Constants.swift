@@ -10,14 +10,15 @@ import Foundation
 struct K {
     
     struct Networking {
-        static let host = "https://8zwbfouccb.execute-api.eu-west-1.amazonaws.com/default/deleteme_trying_upstash_redis"
-        static let ordersPath = "/orders"
-        static let loginPath = "/login"
+        static let host = "http://127.0.0.1:5000"
+        static let ordersPath = "orders"
+        static let loginPath = "login"
         
-        static let ordersHeader = "Authorization"
-        
-        static let token = "some_token"
-        
+    }
+    
+    struct Keychain {
+        static let service = "Scanny"
+        static let tokenKey = "SkannyToken"
     }
 }
 

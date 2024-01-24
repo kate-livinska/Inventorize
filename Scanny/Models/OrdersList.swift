@@ -7,14 +7,14 @@
 
 import Foundation
 
-struct Scanny<CardContent> {
+struct OrdersList<CardContent> {
     private(set) var ordersCards: [Card]
     
-    init(fetchedOrders: [CardContent], cardContentFactory: (Int) -> CardContent) {
+    init(ordersNumber: Int, contentFactory: (Int) -> CardContent) {
         ordersCards = []
-        for i in 0..<fetchedOrders.endIndex {
-            let content = cardContentFactory(i)
-            ordersCards.append(Card(id: "\(i)", content: content))
+        for i in 0..<ordersNumber {
+            let content = contentFactory(i)
+            ordersCards.append(Card(id: i, content: content))
         }
         print(ordersCards)
     }
@@ -22,11 +22,12 @@ struct Scanny<CardContent> {
     mutating func choose(_ card: Card) {
         if let chosenIndex = ordersCards.firstIndex(where: { $0.id == card.id}) {
             ordersCards[chosenIndex].wasOpened = true
+            
         }
     }
     
     struct Card: Identifiable {
-        let id: String
+        let id: Int
         let content: CardContent
         var wasOpened = false
     }

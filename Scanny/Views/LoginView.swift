@@ -8,13 +8,14 @@
 import SwiftUI
 
 struct LoginView: View {
-    
     @ObservedObject var loginVM = LoginViewModel()
     @State private var isEmailValid = true
     
     var body: some View {
         VStack {
-            Text("Login.Title".localized).font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/).fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+            Text("Login.Title".localized)
+                .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
             VStack {
                 HStack {
                     Text("Login.UsernameField.Title".localized)
