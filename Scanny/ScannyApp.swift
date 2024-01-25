@@ -11,11 +11,13 @@ import SwiftUI
 struct ScannyApp: App {
     //@StateObject var ordersList = OrdersListViewModel()
     @StateObject var auth = Auth()
+    @StateObject var dataService = DataService()
     
     var body: some Scene {
         WindowGroup {
             RootView()
                 .environmentObject(auth)
+                .environmentObject(dataService)
         }
     }
 }

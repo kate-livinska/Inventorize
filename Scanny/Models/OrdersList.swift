@@ -22,7 +22,7 @@ struct OrdersList<CardContent> {
     mutating func choose(_ card: Card) {
         if let chosenIndex = ordersCards.firstIndex(where: { $0.id == card.id}) {
             ordersCards[chosenIndex].wasOpened = true
-            
+            print(ordersCards[chosenIndex])
         }
     }
     

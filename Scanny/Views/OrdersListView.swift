@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct OrdersListView: View {
-    let orderListVM = OrdersListViewModel()
+    @ObservedObject var orderListVM = OrdersListViewModel()
     
     var body: some View {
         VStack {
