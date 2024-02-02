@@ -10,13 +10,13 @@ import SwiftUI
 @main
 struct ScannyApp: App {
     //@StateObject var auth = Auth()
-    @StateObject var dataService = DataService()
+    //@StateObject var dataService = DataService()
     
     var body: some Scene {
         WindowGroup {
             ContentView()
                 //.environmentObject(auth)
-                .environmentObject(dataService)
+                //.environmentObject(dataService)
         }
     }
 }
