@@ -26,8 +26,9 @@ class Auth: ObservableObject {
     func setToken(token: String) {
         try? KeychainManager.deleteToken()
         KeychainManager.saveToKeychain(key: K.Keychain.tokenKey, password: token)
-        
-        loggedIn = true
+        DispatchQueue.main.async {
+            self.loggedIn = true
+        }
     }
     
     func logout() {

@@ -7,6 +7,7 @@
 
 import Foundation
 
+@MainActor
 class OrdersListViewModel: ObservableObject {
     @Published var isLoading = false
     @Published private var ordersList: OrdersList<Order>
