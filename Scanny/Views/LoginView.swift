@@ -55,7 +55,9 @@ struct LoginView: View {
                 .textFieldStyle(.roundedBorder)
             }.padding()
             
-            Button(action: loginVM.login) {
+            Button {
+                loginVM.login()
+            } label: {
                 Text("Login.LoginButton.Title".localized)
                     .frame(maxWidth: .infinity)
                     .padding()
