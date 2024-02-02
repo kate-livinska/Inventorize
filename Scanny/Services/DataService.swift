@@ -35,15 +35,7 @@ class DataService: ObservableObject {
             print("Failed to create fetchOrdersData request")
             return nil
         }
-        
-//        NetworkManager<OrderResults>.fetchData(request: request) { response in
-//            switch response {
-//            case .success(let orders):
-//                fetchedOrders = orders.results
-//            case .failure(let error):
-//                print("Error: \(error.localizedDescription)")
-//            }
-//        }
+  
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data else {
                 print("Error NWM.fetchdata data: \(error?.localizedDescription ?? "No data received.")")
@@ -55,6 +47,12 @@ class DataService: ObservableObject {
             }
             if let response = response as? HTTPURLResponse {
                 print("Obtained status code: \(response.statusCode)")
+                switch response.statusCode {
+                case 401:
+                    Auth.shared.logout()
+                default:
+                    print("Data received")
+                }
             }
             
             guard let result = try? JSONDecoder().decode(OrderResults.self, from: data) else {

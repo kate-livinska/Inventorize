@@ -4,6 +4,12 @@
     "Email is not valid." : {
 
     },
+    "Hello, World!" : {
+
+    },
+    "Log Out" : {
+
+    },
     "Login.LoginButton.Title" : {
       "extractionState" : "manual",
       "localizations" : {

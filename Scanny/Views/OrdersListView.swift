@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct OrdersListView: View {
-    @ObservedObject var orderListVM = OrdersListViewModel()
+    @StateObject var orderListVM = OrdersListViewModel()
+    @State private var isShowingScannerView = false
     
     var body: some View {
         VStack {
@@ -20,20 +21,31 @@ struct OrdersListView: View {
             } else {
                 ordersList
             }
+            HStack {
+                Button("Log Out") {
+                    orderListVM.logout()
+                }
+                Spacer()
+            }
+            .padding()
+        }
+        .sheet(isPresented: $isShowingScannerView) {
+            ScannerView()
         }
     }
     
     var ordersList: some View {
-        ForEach(orderListVM.orders) { order in
+        List(orderListVM.orders) { order in
             OrderView(order)
                 .padding(1)
                 .onTapGesture {
                     orderListVM.choose(order)
+                    isShowingScannerView.toggle()
                 }
         }
     }
 }
-
+                        
 struct OrderView: View {
     let order: OrdersList<Order>.Card
     
@@ -42,15 +54,16 @@ struct OrderView: View {
     }
     
     var body: some View {
-        ZStack {
-            let base = RoundedRectangle(cornerRadius: 5)
-            base.strokeBorder(lineWidth: 1)
-            Text(order.content.id)
-                .font(.system(size: 17))
-                .foregroundStyle(order.wasOpened ? .gray : .blue)
-                .fontWeight(order.wasOpened ? .light : .bold)
-                .padding()
-        }
+        Text(order.content.id)
+            .font(.system(size: 17))
+            .foregroundStyle(order.wasOpened ? .gray : .blue)
+            .fontWeight(order.wasOpened ? .light : .bold)
+            .padding()
+//        ZStack {
+//            let base = RoundedRectangle(cornerRadius: 5)
+//            base.strokeBorder(lineWidth: 1)
+            
+//        }
     }
 }
 

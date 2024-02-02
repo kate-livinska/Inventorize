@@ -34,6 +34,15 @@ class OrdersListViewModel: ObservableObject {
         }
     }
     
+    func logout() {
+            Auth.shared.logout()
+        }
+    
+    
+    
+    
+    
+    
 //    private static func fetchOrdersData() -> [Order]? {
 //        var fetchedOrders: [Order] = []
 //        
