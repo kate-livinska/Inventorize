@@ -12,32 +12,36 @@ class LoginViewModel: ObservableObject {
     @Published var password = "password"
     
     func login() {
-        Login(
-            parameters: LoginRequest(
-                username: username,
-                password: password
-            )
-        ).call { response in
-            Auth.shared.setToken(token: response.token)
+        let loginService = LoginService()
+        Task {
+            do {
+                let response = try await loginService.fetchToken(
+                    LoginResponse.self,
+                    credentials: LoginRequest(username: username, password: password),
+                    endpoint: .login,
+                    request: .login
+                )
+                Auth.shared.setToken(token: response.token)
+            } catch {
+                print("Error: API request failed. \(error.localizedDescription)")
+            }
         }
+        
     }
 }
 
-//func login() {
-//    KeychainManager.saveToKeychain(key: username, password: password)
-//    print("Saved to keychain: \(password)")
+//class LoginViewModel: ObservableObject {
+//    @Published var username = "admin@x.com"
+//    @Published var password = "password"
 //    
-//    guard let loginRequest = Auth.createLoginRequest(
-//        username: username,
-//        password: password
-//    ) else {
-//        print("Error creating request while sending login data.")
-//        return
+//    func login() {
+//        Login(
+//            parameters: LoginRequest(
+//                username: username,
+//                password: password
+//            )
+//        ).call { response in
+//            Auth.shared.setToken(token: response.token)
+//        }
 //    }
-//    
-//    if let token = Auth.receiveToken(with: loginRequest) {
-//        print("LoginVM token to save in Keychain: \(token)")
-//        KeychainManager.saveToKeychain(key: K.Keychain.tokenKey, password: token)
-//    }
-//    
 //}

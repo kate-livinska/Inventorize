@@ -13,11 +13,7 @@ struct RootView: View {
     
     var body: some View {
         if auth.loggedIn {
-            if dataService.ordersAreFetched {
-                OrdersListView()
-            } else {
-                ProgressView("ProgressView.Text".localized)
-            }
+            OrdersListView()
         } else {
             LoginView()
         }
@@ -26,4 +22,10 @@ struct RootView: View {
 
 //#Preview {
 //    RootView()
+//}
+
+//if dataService.ordersAreFetched {
+//    OrdersListView()
+//} else {
+//    ProgressView("ProgressView.Text".localized)
 //}
