@@ -10,20 +10,17 @@ import Foundation
 class DataService: ObservableObject {
     static let shared = DataService()
     @Published var fetchedOrders = [Order]()
+    @Published var ordersAreFetched = false
     
     init() {
-        if let fetchedOrders = fetchOrdersData() {
-            self.fetchedOrders = fetchedOrders
-            print("Orders fetched by data service")
-        }
+        fetchOrdersData()
+        print("Orders fetched by data service")
     }
     
-    private func fetchOrdersData() -> [Order]? {
-        var fetchedOrders: [Order] = []
-        
+    private func fetchOrdersData() {
         guard let token = KeychainManager.getToken() else {
             Auth.shared.logout()
-            return nil
+            return
         }
         
         guard let request = NetworkManager<OrderResults>.createRequest(
@@ -33,7 +30,7 @@ class DataService: ObservableObject {
             header: "Authorization"
         ) else {
             print("Failed to create fetchOrdersData request")
-            return nil
+            return
         }
   
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
@@ -62,11 +59,12 @@ class DataService: ObservableObject {
             let str = String(decoding: data, as: UTF8.self)
             print(str)
             //interpret fetched data T in a separate func with corresponding data type in ViewModel
-            fetchedOrders = result.results
-            
+            DispatchQueue.main.async {
+                self.fetchedOrders = result.results
+                self.ordersAreFetched = true
+            }
         }
         task.resume()
-        sleep(2)
-        return fetchedOrders
+        //sleep(2)
     }
 }

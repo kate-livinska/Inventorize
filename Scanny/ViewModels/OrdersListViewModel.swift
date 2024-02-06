@@ -7,7 +7,6 @@
 
 import Foundation
 
-@MainActor
 class OrdersListViewModel: ObservableObject {
     @Published var isLoading = false
     @Published private var ordersList: OrdersList<Order>
@@ -18,6 +17,10 @@ class OrdersListViewModel: ObservableObject {
         ordersList = OrdersListViewModel.createOrdersList(fetchedOrders)
         isLoading = false
         print("OrdersListVM initialized")
+    }
+    
+    deinit {
+        print("OrdersListVM deinitialized")
     }
     
     var orders: [OrdersList<Order>.Card] {
