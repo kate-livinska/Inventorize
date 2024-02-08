@@ -29,7 +29,6 @@
 		41ED6F7C2B592EA3002A7F60 /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41ED6F7B2B592EA3002A7F60 /* Auth.swift */; };
 		41ED6F7E2B597C57002A7F60 /* OrdersListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41ED6F7D2B597C57002A7F60 /* OrdersListViewModel.swift */; };
 		41ED6F802B597C62002A7F60 /* OrdersListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41ED6F7F2B597C62002A7F60 /* OrdersListView.swift */; };
-		41ED6F822B5AD3AB002A7F60 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41ED6F812B5AD3AB002A7F60 /* Login.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,7 +55,6 @@
 		41ED6F7B2B592EA3002A7F60 /* Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
 		41ED6F7D2B597C57002A7F60 /* OrdersListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersListViewModel.swift; sourceTree = "<group>"; };
 		41ED6F7F2B597C62002A7F60 /* OrdersListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersListView.swift; sourceTree = "<group>"; };
-		41ED6F812B5AD3AB002A7F60 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,7 +179,6 @@
 				41ED6F762B5527B2002A7F60 /* KeychainManager.swift */,
 				411D51AE2B501277008650EF /* NetworkManager.swift */,
 				41ED6F7B2B592EA3002A7F60 /* Auth.swift */,
-				41ED6F812B5AD3AB002A7F60 /* Login.swift */,
 				41A6E02B2B7238AC00D666D1 /* LoginService.swift */,
 				4193810B2B6276EC0004FC91 /* DataService.swift */,
 			);
@@ -279,7 +276,6 @@
 				41A6E0282B6CD21900D666D1 /* ContentView.swift in Sources */,
 				41ED6F7E2B597C57002A7F60 /* OrdersListViewModel.swift in Sources */,
 				41ED6F802B597C62002A7F60 /* OrdersListView.swift in Sources */,
-				41ED6F822B5AD3AB002A7F60 /* Login.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

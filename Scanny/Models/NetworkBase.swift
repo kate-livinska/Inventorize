@@ -28,36 +28,36 @@ enum NetworkServiceError: Error {
 }
 
 extension NetworkBase {
+//    func fetch<Result: Codable>(
+//        _ type: Result.Type,
+//        endpoint: Endpoint,
+//        request: Request
+//    ) async throws -> Result {
+//       
+//        let urlString = "\(Self.host)/\(endpoint.path)"
+//        print(urlString)
+//        guard let url = URL(string: urlString) else {
+//            throw NetworkServiceError.urlError
+//        }
+//        
+//        var urlRequest = URLRequest(url: url)
+//        urlRequest.httpMethod = request.method
+//        urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+//        urlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
+//        urlRequest.addValue(request.value, forHTTPHeaderField: request.header)
+//        
+//        let (data, _) = try await URLSession.shared.data(for: urlRequest)
+//        let result = try JSONDecoder().decode(Result.self, from: data)
+//        
+//        return result
+//    }
+    
     func fetch<Result: Codable>(
         _ type: Result.Type,
+        body: Encodable,
         endpoint: Endpoint,
         request: Request
-    ) async throws -> Result {
-       
-        let urlString = "\(Self.host)/\(endpoint.path)"
-        print(urlString)
-        guard let url = URL(string: urlString) else {
-            throw NetworkServiceError.urlError
-        }
-        
-        var urlRequest = URLRequest(url: url)
-        urlRequest.httpMethod = request.method
-        urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        urlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
-        urlRequest.addValue(request.value, forHTTPHeaderField: request.header)
-        
-        let (data, _) = try await URLSession.shared.data(for: urlRequest)
-        let result = try JSONDecoder().decode(Result.self, from: data)
-        
-        return result
-    }
-    
-    func fetchToken<Result: Codable>(
-        _ type: Result.Type,
-        credentials: LoginRequest,
-        endpoint: Endpoint,
-        request: Request
-    ) async throws -> Result {
+    ) async throws -> (data: Result, response: Int) {
        
         let urlString = "\(Self.host)/\(endpoint.path)"
         print(urlString)
@@ -72,16 +72,17 @@ extension NetworkBase {
         urlRequest.addValue(request.value, forHTTPHeaderField: request.header)
         
         do {
-            urlRequest.httpBody = try JSONEncoder().encode(credentials)
+            urlRequest.httpBody = try JSONEncoder().encode(body)
         } catch {
             print("Error: unable to encode request parameters")
         }
         
-        let (data, _) = try await URLSession.shared.data(for: urlRequest)
+        let (data, response) = try await URLSession.shared.data(for: urlRequest)
         let str = String(decoding: data, as: UTF8.self)
         print(str)
         let result = try JSONDecoder().decode(Result.self, from: data)
-        
-        return result
+        let message = response as? HTTPURLResponse
+    
+        return (result, message?.statusCode ?? 0)
     }
 }

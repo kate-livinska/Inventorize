@@ -42,6 +42,4 @@ class LoginService: NetworkBase {
             }
         }
     }
-    
-    
 }
