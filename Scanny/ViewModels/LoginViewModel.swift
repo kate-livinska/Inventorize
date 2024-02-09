@@ -15,7 +15,7 @@ class LoginViewModel: ObservableObject {
         let loginService = LoginService()
         Task {
             do {
-                let response = try await loginService.fetch(
+                let response = try await loginService.post(
                     LoginResponse.self,
                     body: LoginRequest(username: username, password: password),
                     endpoint: .login,

@@ -11,9 +11,9 @@ struct K {
     
     struct Networking {
         static let host = "http://127.0.0.1:5000"
-        static let ordersPath = "orders"
-        static let loginPath = "login"
         
+        static let loginPath = "login"
+        static let ordersPath = "orders"
     }
     
     struct Keychain {

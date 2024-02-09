@@ -9,12 +9,14 @@ import Foundation
 
 class OrdersListViewModel: ObservableObject {
     @Published var isLoading = false
-    @Published private var ordersList: OrdersList<Order>
+    //@Published var fetchedOrders = [Order]()
+    private var ordersList: OrdersList<Order>
     
     init() {
         isLoading = true
-        let fetchedOrders = DataService.shared.fetchedOrders
-        ordersList = OrdersListViewModel.createOrdersList(fetchedOrders)
+        OrdersListViewModel.fetchOrders()
+        let fetched = DataService.shared.fetchedOrders
+        ordersList = OrdersListViewModel.createOrdersList(fetched)
         isLoading = false
         print("OrdersListVM initialized")
     }
@@ -32,9 +34,39 @@ class OrdersListViewModel: ObservableObject {
         print(order.id)
     }
     
-    private static func createOrdersList(_ fetchedOrders: [Order]) -> OrdersList<Order> {
+    static private func createOrdersList(_ fetchedOrders: [Order]) -> OrdersList<Order> {
         return OrdersList(ordersNumber: fetchedOrders.endIndex) {i in
             return fetchedOrders[i]
+        }
+    }
+    
+    static private func fetchOrders() {
+        let dataService = DataService()
+        
+        Task {
+            do {
+                let orders = try await dataService.fetch(
+                    OrderResults.self,
+                    endpoint: .orders,
+                    request: .orders
+                )
+                dataService.fetchedOrders = orders.data.results
+                //FIXME: - Publishing changes from background threads
+                DataService.shared.fetchedOrders = dataService.fetchedOrders
+                
+                
+                switch orders.response {
+                case 401:
+                    Auth.shared.logout()
+                    print("Authorization Error (401)")
+                case 200:
+                    print("OK")
+                default:
+                    print("Error while fetching data")
+                }
+            } catch {
+                print("Error: Data request failed. \(error.localizedDescription)")
+            }
         }
     }
     
@@ -42,3 +74,6 @@ class OrdersListViewModel: ObservableObject {
             Auth.shared.logout()
         }
 }
+
+
+

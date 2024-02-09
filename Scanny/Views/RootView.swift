@@ -9,7 +9,7 @@ import SwiftUI
 
 struct RootView: View {
     @EnvironmentObject var auth: Auth
-    @EnvironmentObject var dataService: DataService
+    //@EnvironmentObject var dataService: DataService
     
     var body: some View {
         if auth.loggedIn {
@@ -22,10 +22,4 @@ struct RootView: View {
 
 //#Preview {
 //    RootView()
-//}
-
-//if dataService.ordersAreFetched {
-//    OrdersListView()
-//} else {
-//    ProgressView("ProgressView.Text".localized)
 //}

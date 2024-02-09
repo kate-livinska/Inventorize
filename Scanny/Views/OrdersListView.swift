@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct OrdersListView: View {
-    @StateObject var orderListVM = OrdersListViewModel()
+    @ObservedObject var orderListVM = OrdersListViewModel()
     @State private var isShowingScannerView = false
     
     var body: some View {
