@@ -16,7 +16,6 @@
 		411D51A12B4D4B2B008650EF /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411D51A02B4D4B2B008650EF /* StringExtensions.swift */; };
 		411D51A72B4D56A5008650EF /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411D51A62B4D56A5008650EF /* LoginViewModel.swift */; };
 		411D51AD2B4D587B008650EF /* LoginData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411D51AC2B4D587B008650EF /* LoginData.swift */; };
-		411D51AF2B501277008650EF /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411D51AE2B501277008650EF /* NetworkManager.swift */; };
 		411D51B12B50133A008650EF /* OrderData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411D51B02B50133A008650EF /* OrderData.swift */; };
 		411D51B72B51433E008650EF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411D51B62B51433E008650EF /* Constants.swift */; };
 		411D51BB2B516047008650EF /* OrdersList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411D51BA2B516047008650EF /* OrdersList.swift */; };
@@ -42,7 +41,6 @@
 		411D51A02B4D4B2B008650EF /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		411D51A62B4D56A5008650EF /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		411D51AC2B4D587B008650EF /* LoginData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginData.swift; sourceTree = "<group>"; };
-		411D51AE2B501277008650EF /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		411D51B02B50133A008650EF /* OrderData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderData.swift; sourceTree = "<group>"; };
 		411D51B62B51433E008650EF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		411D51BA2B516047008650EF /* OrdersList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersList.swift; sourceTree = "<group>"; };
@@ -177,7 +175,6 @@
 			isa = PBXGroup;
 			children = (
 				41ED6F762B5527B2002A7F60 /* KeychainManager.swift */,
-				411D51AE2B501277008650EF /* NetworkManager.swift */,
 				41ED6F7B2B592EA3002A7F60 /* Auth.swift */,
 				41A6E02B2B7238AC00D666D1 /* LoginService.swift */,
 				4193810B2B6276EC0004FC91 /* DataService.swift */,
@@ -272,7 +269,6 @@
 				411D518E2B4D3EF8008650EF /* RootView.swift in Sources */,
 				411D51A72B4D56A5008650EF /* LoginViewModel.swift in Sources */,
 				411D518C2B4D3EF8008650EF /* ScannyApp.swift in Sources */,
-				411D51AF2B501277008650EF /* NetworkManager.swift in Sources */,
 				41A6E0282B6CD21900D666D1 /* ContentView.swift in Sources */,
 				41ED6F7E2B597C57002A7F60 /* OrdersListViewModel.swift in Sources */,
 				41ED6F802B597C62002A7F60 /* OrdersListView.swift in Sources */,

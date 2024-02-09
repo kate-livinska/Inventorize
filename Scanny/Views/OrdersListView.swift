@@ -59,11 +59,6 @@ struct OrderView: View {
             .foregroundStyle(order.wasOpened ? .gray : .blue)
             .fontWeight(order.wasOpened ? .light : .bold)
             .padding()
-//        ZStack {
-//            let base = RoundedRectangle(cornerRadius: 5)
-//            base.strokeBorder(lineWidth: 1)
-            
-//        }
     }
 }
 

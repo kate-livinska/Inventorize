@@ -22,6 +22,7 @@ class LoginViewModel: ObservableObject {
                     request: .login
                 ).data
                 Auth.shared.setToken(token: response.token)
+                DataService.shared.fetchOrders()
             } catch {
                 print("Error: API request failed. \(error.localizedDescription)")
             }
@@ -29,19 +30,3 @@ class LoginViewModel: ObservableObject {
         
     }
 }
-
-//class LoginViewModel: ObservableObject {
-//    @Published var username = "admin@x.com"
-//    @Published var password = "password"
-//    
-//    func login() {
-//        Login(
-//            parameters: LoginRequest(
-//                username: username,
-//                password: password
-//            )
-//        ).call { response in
-//            Auth.shared.setToken(token: response.token)
-//        }
-//    }
-//}

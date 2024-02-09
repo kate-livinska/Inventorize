@@ -44,6 +44,7 @@ extension NetworkBase {
         return result
     }
     
+    //FIXME: rewrite with correct set of subfunctions
     func fetch<Result: Codable>(
         _ type: Result.Type,
         endpoint: Endpoint,
@@ -125,27 +126,3 @@ extension NetworkBase {
         return (result, message?.statusCode ?? 0)
     }
 }
-
-//    func fetch<Result: Codable>(
-//        _ type: Result.Type,
-//        endpoint: Endpoint,
-//        request: Request
-//    ) async throws -> Result {
-//
-//        let urlString = "\(Self.host)/\(endpoint.path)"
-//        print(urlString)
-//        guard let url = URL(string: urlString) else {
-//            throw NetworkServiceError.urlError
-//        }
-//
-//        var urlRequest = URLRequest(url: url)
-//        urlRequest.httpMethod = request.method
-//        urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
-//        urlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
-//        urlRequest.addValue(request.value, forHTTPHeaderField: request.header)
-//
-//        let (data, _) = try await URLSession.shared.data(for: urlRequest)
-//        let result = try JSONDecoder().decode(Result.self, from: data)
-//
-//        return result
-//    }

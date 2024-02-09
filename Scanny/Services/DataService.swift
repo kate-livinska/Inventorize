@@ -10,6 +10,10 @@ import Foundation
 class DataService: NetworkBase, ObservableObject {
     static let shared = DataService()
     @Published var fetchedOrders = [Order]()
+    
+    init() {
+        fetchOrders()
+    }
    
     enum Endpoint: EndpointProtocol {
         case orders
@@ -49,57 +53,32 @@ class DataService: NetworkBase, ObservableObject {
             }
         }
     }
+    
+    func fetchOrders() {
+        Task {
+            do {
+                let orders = try await self.fetch(
+                    OrderResults.self,
+                    endpoint: .orders,
+                    request: .orders
+                )
+                DispatchQueue.main.async {
+                    self.fetchedOrders = orders.data.results
+                }
+                
+                
+                switch orders.response {
+                case 401:
+                    Auth.shared.logout()
+                    print("Authorization Error (401)")
+                case 200:
+                    print("OK")
+                default:
+                    print("Error while fetching data")
+                }
+            } catch {
+                print("Error: Data request failed. \(error.localizedDescription)")
+            }
+        }
+    }
 }
-
-
-
-//private func fetchOrdersData() {
-//    guard let token = KeychainManager.getToken() else {
-//        Auth.shared.logout()
-//        return
-//    }
-//    
-//    guard let request = NetworkManager<OrderResults>.createRequest(
-//        path: K.Networking.ordersPath,
-//        method: "get",
-//        value: "Bearer \(token)",
-//        header: "Authorization"
-//    ) else {
-//        print("Failed to create fetchOrdersData request")
-//        return
-//    }
-//
-//    let task = URLSession.shared.dataTask(with: request) { data, response, error in
-//        guard let data else {
-//            print("Error NWM.fetchdata data: \(error?.localizedDescription ?? "No data received.")")
-//            return
-//        }
-//        guard let response else {
-//            print("Error NWM.getResponse: \(error?.localizedDescription ?? "No response for token received.")")
-//            return
-//        }
-//        if let response = response as? HTTPURLResponse {
-//            print("Obtained status code: \(response.statusCode)")
-//            switch response.statusCode {
-//            case 401:
-//                Auth.shared.logout()
-//            default:
-//                print("Data received")
-//            }
-//        }
-//        
-//        guard let result = try? JSONDecoder().decode(OrderResults.self, from: data) else {
-//            print("Error NWM.fetchdata result: \(error?.localizedDescription ?? "Data decription failed.")")
-//            return
-//        }
-//        let str = String(decoding: data, as: UTF8.self)
-//        print(str)
-//        //interpret fetched data T in a separate func with corresponding data type in ViewModel
-//        DispatchQueue.main.async {
-//            self.fetchedOrders = result.results
-//            self.ordersAreFetched = true
-//        }
-//    }
-//    task.resume()
-//    //sleep(2)
-//}
