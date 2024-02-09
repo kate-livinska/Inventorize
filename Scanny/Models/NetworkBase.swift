@@ -20,6 +20,7 @@ protocol EndpointProtocol {
 protocol RequestProtocol {
     var value: String { get }
     var header: String { get }
+    var method: String { get }
 }
 
 enum NetworkServiceError: Error {
@@ -35,46 +36,28 @@ extension NetworkBase {
         _ type: Result.Type,
         body: Codable,
         endpoint: Endpoint,
+        directory: String = "",
         request: Request
     ) async throws -> (data: Result, response: Int) {
         let url = try url(for: endpoint)
-        let urlRequest = urlRequest(with: url, request, body)
+        var urlRequest = urlRequest(with: url, request)
+        urlRequest.httpBody = try JSONEncoder().encode(body)
         let result: (data: Result, response: Int) = try await getData(urlRequest)
         
         return result
     }
     
-    //FIXME: rewrite with correct set of subfunctions
     func fetch<Result: Codable>(
         _ type: Result.Type,
         endpoint: Endpoint,
+        directory: String = "",
         request: Request
     ) async throws -> (data: Result, response: Int) {
-       
-        let urlString = "\(Self.host)/\(endpoint.path)"
-        print(urlString)
-        guard let url = URL(string: urlString) else {
-            throw NetworkServiceError.urlError
-        }
+        let url = try url(for: endpoint)
+        var urlRequest = urlRequest(with: url, request)
+        let result: (data: Result, response: Int) = try await getData(urlRequest)
         
-        var urlRequest = URLRequest(url: url)
-        urlRequest.httpMethod = "get"
-        urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        urlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
-        urlRequest.addValue(request.value, forHTTPHeaderField: request.header)
-        
-        
-        let (data, response) = try await URLSession.shared.data(for: urlRequest)
-        let str = String(decoding: data, as: UTF8.self)
-        print(str)
-        
-        //FIXME: - Error handling
-        guard (response as? HTTPURLResponse)?.statusCode == 200 else { throw NetworkServiceError.networkError}
-        //return only data
-        let result = try JSONDecoder().decode(Result.self, from: data)
-        let message = response as? HTTPURLResponse
-    
-        return (result, message?.statusCode ?? 0)
+        return result
     }
     
     func url(for endpoint: Endpoint, directory: String = "") throws -> URL {
@@ -88,26 +71,10 @@ extension NetworkBase {
     
     func urlRequest(with url: URL, _ request: Request) -> URLRequest {
         var urlRequest = URLRequest(url: url)
-        urlRequest.httpMethod = "post"
+        urlRequest.httpMethod = request.method
         urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
         urlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
         urlRequest.addValue(request.value, forHTTPHeaderField: request.header)
-        
-        return urlRequest
-    }
-    
-    func urlRequest(with url: URL, _ request: Request, _ body: Codable) -> URLRequest {
-        var urlRequest = URLRequest(url: url)
-        urlRequest.httpMethod = "post"
-        urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        urlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
-        urlRequest.addValue(request.value, forHTTPHeaderField: request.header)
-        
-        do {
-            urlRequest.httpBody = try JSONEncoder().encode(body)
-        } catch {
-            print("Error: unable to encode request parameters")
-        }
         
         return urlRequest
     }
