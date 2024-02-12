@@ -63,18 +63,7 @@ class DataService: NetworkBase, ObservableObject {
                     request: .orders
                 )
                 DispatchQueue.main.async {
-                    self.fetchedOrders = orders.data.results
-                }
-                
-                
-                switch orders.response {
-                case 401:
-                    Auth.shared.logout()
-                    print("Authorization Error (401)")
-                case 200:
-                    print("OK")
-                default:
-                    print("Error while fetching data")
+                    self.fetchedOrders = orders.results
                 }
             } catch {
                 print("Error: Data request failed. \(error.localizedDescription)")

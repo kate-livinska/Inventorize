@@ -54,11 +54,14 @@ struct OrderView: View {
     }
     
     var body: some View {
-        Text(order.content.id)
-            .font(.system(size: 17))
-            .foregroundStyle(order.wasOpened ? .gray : .blue)
-            .fontWeight(order.wasOpened ? .light : .bold)
-            .padding()
+        HStack {
+            Text(String(order.content.id))
+            Text(order.content.name)
+        }
+        .font(.system(size: 16))
+        .foregroundStyle(order.wasOpened ? .gray : .blue)
+        .fontWeight(order.wasOpened ? .light : .bold)
+        .padding()
     }
 }
 

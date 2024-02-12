@@ -20,7 +20,7 @@ class LoginViewModel: ObservableObject {
                     body: LoginRequest(username: username, password: password),
                     endpoint: .login,
                     request: .login
-                ).data
+                )
                 Auth.shared.setToken(token: response.token)
                 DataService.shared.fetchOrders()
             } catch {

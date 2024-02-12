@@ -38,11 +38,11 @@ extension NetworkBase {
         endpoint: Endpoint,
         directory: String = "",
         request: Request
-    ) async throws -> (data: Result, response: Int) {
+    ) async throws -> Result {
         let url = try url(for: endpoint)
         var urlRequest = urlRequest(with: url, request)
         urlRequest.httpBody = try JSONEncoder().encode(body)
-        let result: (data: Result, response: Int) = try await getData(urlRequest)
+        let result: Result = try await getData(urlRequest)
         
         return result
     }
@@ -52,10 +52,10 @@ extension NetworkBase {
         endpoint: Endpoint,
         directory: String = "",
         request: Request
-    ) async throws -> (data: Result, response: Int) {
+    ) async throws -> Result {
         let url = try url(for: endpoint)
-        var urlRequest = urlRequest(with: url, request)
-        let result: (data: Result, response: Int) = try await getData(urlRequest)
+        let urlRequest = urlRequest(with: url, request)
+        let result: Result = try await getData(urlRequest)
         
         return result
     }
@@ -79,17 +79,28 @@ extension NetworkBase {
         return urlRequest
     }
     
-    func getData<Result: Codable>(_ urlRequest: URLRequest) async throws -> (data: Result, response: Int) {
+    func getData<Result: Codable>(_ urlRequest: URLRequest) async throws -> Result {
         let (data, response) = try await URLSession.shared.data(for: urlRequest)
         let str = String(decoding: data, as: UTF8.self)
         print(str)
         
         //FIXME: - Error handling
-        guard (response as? HTTPURLResponse)?.statusCode == 200 else { throw NetworkServiceError.networkError}
+        let message = response as? HTTPURLResponse
+        guard message?.statusCode == 200 else {
+            switch message?.statusCode {
+            case 401:
+                Auth.shared.logout()
+                print("Authorization Error (401)")
+            case 200:
+                print("OK")
+            default:
+                print("Error while fetching data")
+            }
+            throw NetworkServiceError.networkError
+        }
         //return only data
         let result = try JSONDecoder().decode(Result.self, from: data)
-        let message = response as? HTTPURLResponse
     
-        return (result, message?.statusCode ?? 0)
+        return (result)
     }
 }
