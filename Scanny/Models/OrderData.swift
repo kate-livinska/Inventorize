@@ -22,8 +22,8 @@ struct OrderDetails: Codable {
 
 struct Item: Codable, Identifiable {
     let id: Int
-    let ean: Int
+    let ean: String
     let sku: String
     var quantity: Int
-    let box: String
+    let box: Int
 }
