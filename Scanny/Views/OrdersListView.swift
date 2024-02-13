@@ -19,7 +19,17 @@ struct OrdersListView: View {
             if orderListVM.isLoading {
                 ProgressView("ProgressView.Text".localized)
             } else {
-                ordersList
+                List(orderListVM.orders) { order in
+                    OrderView(order)
+                        .padding(1)
+                        .onTapGesture {
+                            orderListVM.choose(order)
+                            isShowingScannerView.toggle()
+                        }
+                        .sheet(isPresented: $isShowingScannerView) {
+                            OrderDetailsView(order: order)
+                        }
+                }
             }
             HStack {
                 Button("Log Out") {
@@ -29,9 +39,9 @@ struct OrdersListView: View {
             }
             .padding()
         }
-        .sheet(isPresented: $isShowingScannerView) {
-            ScannerView()
-        }
+//        .sheet(isPresented: $isShowingScannerView) {
+//            OrderDetailsView(order: order)
+//        }
     }
     
     var ordersList: some View {
