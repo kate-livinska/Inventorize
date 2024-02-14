@@ -14,8 +14,36 @@ struct OrderDetailsView: View {
         VStack {
             Text(order.content.name)
                 .font(.title)
+            Text(String(order.content.id))
+            List(DataService.shared.fetchedItems) { item in
+                ItemView(item)
+            }
+        }
+        .onAppear {
+            DataService.shared.fetchItems(id: order.content.id)
         }
         
+    }
+}
+
+struct ItemView: View {
+    let item: Item
+    
+    init(_ item: Item) {
+        self.item = item
+    }
+    
+    var body: some View {
+        HStack {
+            VStack {
+                Text("EAN: \(item.ean)")
+                Text("SKU: \(item.sku)")
+            }
+            VStack {
+                Text("Qty: \(String(item.quantity))")
+                Text("Qty: \(String(item.box))")
+            }
+        }
     }
 }
 

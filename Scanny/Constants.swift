@@ -10,9 +10,9 @@ import Foundation
 struct K {
     
     struct Networking {
-        static let host = "http://127.0.0.1:5000"
+        static let host = "https://82f9935fcf1c.websafety.ninja/api"
         
-        static let loginPath = "login"
+        static let loginPath = "auth"
         static let ordersPath = "orders"
     }
     

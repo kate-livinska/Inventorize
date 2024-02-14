@@ -30,13 +30,13 @@ class LoginService: NetworkBase {
         
         var value: String {
             switch self {
-            case .login: ""
+            case .login: "application/json"
             }
         }
         
         var header: String {
             switch self {
-            case .login: ""
+            case .login: "Accept"
             }
         }
     }

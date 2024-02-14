@@ -53,7 +53,7 @@ extension NetworkBase {
         directory: String = "",
         request: Request
     ) async throws -> Result {
-        let url = try url(for: endpoint)
+        let url = try url(for: endpoint, directory: directory)
         let urlRequest = urlRequest(with: url, request)
         let result: Result = try await getData(urlRequest)
         
@@ -68,12 +68,12 @@ extension NetworkBase {
         }
         return url
     }
-    
+    //FIXME: - value header in post request for login not needed
     func urlRequest(with url: URL, _ request: Request) -> URLRequest {
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = request.method
         urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        urlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
+        //urlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
         urlRequest.addValue(request.value, forHTTPHeaderField: request.header)
         
         return urlRequest

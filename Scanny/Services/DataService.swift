@@ -10,6 +10,7 @@ import Foundation
 class DataService: NetworkBase, ObservableObject {
     static let shared = DataService()
     @Published var fetchedOrders = [Order]()
+    @Published var fetchedItems = [Item]()
     
     init() {
         fetchOrders()
@@ -64,6 +65,25 @@ class DataService: NetworkBase, ObservableObject {
                 )
                 DispatchQueue.main.async {
                     self.fetchedOrders = orders.results
+                }
+            } catch {
+                print("Error: Data request failed. \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    func fetchItems(id: Int) {
+        let directoryStr = "/\(String(id))"
+        Task {
+            do {
+                let orderDetails = try await self.fetch(
+                    OrderDetails.self,
+                    endpoint: .orders,
+                    directory: directoryStr,
+                    request: .orders
+                )
+                DispatchQueue.main.async {
+                    self.fetchedItems = orderDetails.results
                 }
             } catch {
                 print("Error: Data request failed. \(error.localizedDescription)")

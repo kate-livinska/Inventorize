@@ -14,5 +14,5 @@ struct LoginRequest: Codable {
 
 struct LoginResponse: Codable {
     let token: String
-    let message: String
+    let message: String?
 }

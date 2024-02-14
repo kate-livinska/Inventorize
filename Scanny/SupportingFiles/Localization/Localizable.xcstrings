@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "EAN: %@" : {
+
+    },
     "Email is not valid." : {
 
     },
@@ -86,6 +89,12 @@
           }
         }
       }
+    },
+    "Qty: %@" : {
+
+    },
+    "SKU: %@" : {
+
     }
   },
   "version" : "1.0"
