@@ -26,9 +26,9 @@ struct OrdersListView: View {
                             orderListVM.choose(order)
                             isShowingScannerView.toggle()
                         }
-                        .sheet(isPresented: $isShowingScannerView) {
-                            OrderDetailsView(order: order)
-                        }
+//                        .sheet(isPresented: $isShowingScannerView) {
+//                            OrderDetailsView(order: order)
+//                        }
                 }
             }
             HStack {
@@ -38,6 +38,9 @@ struct OrdersListView: View {
                 Spacer()
             }
             .padding()
+        }
+        .sheet(isPresented: $isShowingScannerView) {
+                    OrderDetailsView(order: Scanny.OrdersList<Scanny.Order>.Card(id: 1, content: Scanny.Order(id: 2, name: "Test order small 1"), wasOpened: true))
         }
 //        .sheet(isPresented: $isShowingScannerView) {
 //            OrderDetailsView(order: order)

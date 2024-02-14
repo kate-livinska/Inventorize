@@ -9,18 +9,19 @@ import SwiftUI
 
 struct OrderDetailsView: View {
     var order: OrdersList<Order>.Card
+    @ObservedObject var itemService = DataService()
     
     var body: some View {
         VStack {
             Text(order.content.name)
                 .font(.title)
             Text(String(order.content.id))
-            List(DataService.shared.fetchedItems) { item in
-                ItemView(item)
+            List(itemService.fetchedItems) {
+                ItemView($0)
             }
         }
         .onAppear {
-            DataService.shared.fetchItems(id: order.content.id)
+            itemService.fetchItems(id: order.content.id)
         }
         
     }
