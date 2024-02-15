@@ -26,6 +26,9 @@ class OrdersListViewModel: ObservableObject {
     var orders: [OrdersList<Order>.Card] {
         ordersList.ordersCards
     }
+    var chosen: Order {
+        ordersList.chosenOrderId!
+    }
     
     func choose(_ order: OrdersList<Order>.Card) {
         ordersList.choose(order)

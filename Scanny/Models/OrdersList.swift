@@ -19,9 +19,12 @@ struct OrdersList<CardContent> {
         print(ordersCards)
     }
     
+    var chosenOrderId: CardContent?
+    
     mutating func choose(_ card: Card) {
         if let chosenIndex = ordersCards.firstIndex(where: { $0.id == card.id}) {
             ordersCards[chosenIndex].wasOpened = true
+            chosenOrderId = ordersCards[chosenIndex].content
             print(ordersCards[chosenIndex])
         }
     }

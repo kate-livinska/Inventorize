@@ -8,20 +8,20 @@
 import SwiftUI
 
 struct OrderDetailsView: View {
-    var order: OrdersList<Order>.Card
+    var order: Order
     @ObservedObject var itemService = DataService()
     
     var body: some View {
         VStack {
-            Text(order.content.name)
+            Text(order.name)
                 .font(.title)
-            Text(String(order.content.id))
+            Text(String(order.id))
             List(itemService.fetchedItems) {
                 ItemView($0)
             }
         }
         .onAppear {
-            itemService.fetchItems(id: order.content.id)
+            itemService.fetchItems(id: order.id)
         }
         
     }
@@ -42,12 +42,12 @@ struct ItemView: View {
             }
             VStack {
                 Text("Qty: \(String(item.quantity))")
-                Text("Qty: \(String(item.box))")
+                Text("Box: \(String(item.box))")
             }
         }
     }
 }
 
 #Preview {
-    OrderDetailsView(order: Scanny.OrdersList<Scanny.Order>.Card(id: 0, content: Scanny.Order(id: 80429, name: "Order f037qVAbOiHCLA")))
+    OrderDetailsView(order: Scanny.Order(id: 80429, name: "Order f037qVAbOiHCLA"))
 }

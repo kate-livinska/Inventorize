@@ -40,7 +40,7 @@ struct OrdersListView: View {
             .padding()
         }
         .sheet(isPresented: $isShowingScannerView) {
-                    OrderDetailsView(order: Scanny.OrdersList<Scanny.Order>.Card(id: 1, content: Scanny.Order(id: 2, name: "Test order small 1"), wasOpened: true))
+            OrderDetailsView(order: orderListVM.chosen)
         }
 //        .sheet(isPresented: $isShowingScannerView) {
 //            OrderDetailsView(order: order)
