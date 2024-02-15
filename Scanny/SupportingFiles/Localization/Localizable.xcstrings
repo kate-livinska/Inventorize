@@ -7,9 +7,6 @@
     "EAN: %@" : {
 
     },
-    "Email is not valid." : {
-
-    },
     "Hello, World!" : {
 
     },
@@ -66,7 +63,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "E-mail"
+            "value" : "Username"
           }
         }
       }
