@@ -72,7 +72,7 @@ struct OrderView: View {
             Text(order.content.name)
         }
         .font(.system(size: 16))
-        .foregroundStyle(order.wasOpened ? .gray : .blue)
+        .foregroundStyle(order.wasOpened ? .gray : .primaryColor)
         .fontWeight(order.wasOpened ? .light : .bold)
         .padding()
     }

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct LoginView: View {
     @ObservedObject var loginVM = LoginViewModel()
+    @State private var isEmailValid = true
     
     var body: some View {
         VStack {
@@ -20,12 +21,26 @@ struct LoginView: View {
                     Text("Login.UsernameField.Title".localized)
                     Spacer()
                 }
-                TextField("Login.UsernameField.Title".localized, text: $loginVM.username)
-                    .textInputAutocapitalization(.never)
-                    .disableAutocorrection(true)
-                    .textFieldStyle(.roundedBorder)
+                TextField("Login.UsernameField.Title".localized, text: $loginVM.username, onEditingChanged: { (isChanged) in
+                    if !isChanged {
+                        if self.textFieldValidatorEmail(loginVM.username) {
+                            self.isEmailValid = true
+                        } else {
+                            self.isEmailValid = false
+                            loginVM.username = ""
+                        }
+                    }
+                })
+                .textInputAutocapitalization(.never)
+                .disableAutocorrection(true)
+                .textFieldStyle(.roundedBorder)
             }.padding()
             
+            if !self.isEmailValid {
+                Text("Email is not valid.")
+                    .font(.callout)
+                    .foregroundColor(Color.red)
+            }
             
             VStack {
                 HStack {
@@ -44,6 +59,7 @@ struct LoginView: View {
                 loginVM.login()
             } label: {
                 Text("Login.LoginButton.Title".localized)
+                    .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                     .frame(maxWidth: .infinity)
                     .padding()
             }
@@ -51,6 +67,15 @@ struct LoginView: View {
             .padding()
         }
     }
+    
+    func textFieldValidatorEmail(_ string: String) -> Bool {
+            if string.count > 100 {
+                return false
+            }
+            let emailFormat = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+            let emailPredicate = NSPredicate(format:"SELF MATCHES %@", emailFormat)
+            return emailPredicate.evaluate(with: string)
+        }
 }
 
 #Preview {

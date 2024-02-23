@@ -8,8 +8,8 @@
 import Foundation
 
 class LoginViewModel: ObservableObject {
-    @Published var username = ""
-    @Published var password = ""
+    @Published var username = "admin@x.com"
+    @Published var password = "password"
     
     func login() {
         let loginService = LoginService()
