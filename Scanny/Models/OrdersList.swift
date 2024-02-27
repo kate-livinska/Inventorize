@@ -7,14 +7,15 @@
 
 import Foundation
 
-struct OrdersList<CardContent> {
-    private(set) var ordersCards: [Card]
+struct OrdersList<CardContent> where CardContent: Equatable {
+    private(set) var ordersCards: [Card] = []
     
     init(ordersNumber: Int, contentFactory: (Int) -> CardContent) {
-        ordersCards = []
         for i in 0..<ordersNumber {
             let content = contentFactory(i)
-            ordersCards.append(Card(id: i, content: content))
+            if !ordersCards.contains(where: { $0.content == content}) {
+                ordersCards.append(Card(id: i, content: content))
+            }
         }
         print(ordersCards)
     }

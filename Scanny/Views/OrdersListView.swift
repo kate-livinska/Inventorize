@@ -26,9 +26,6 @@ struct OrdersListView: View {
                             orderListVM.choose(order)
                             isShowingScannerView.toggle()
                         }
-//                        .sheet(isPresented: $isShowingScannerView) {
-//                            OrderDetailsView(order: order)
-//                        }
                 }
             }
             HStack {
@@ -42,9 +39,6 @@ struct OrdersListView: View {
         .sheet(isPresented: $isShowingScannerView) {
             OrderDetailsView(order: orderListVM.chosen)
         }
-//        .sheet(isPresented: $isShowingScannerView) {
-//            OrderDetailsView(order: order)
-//        }
     }
     
     var ordersList: some View {

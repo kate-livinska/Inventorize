@@ -11,7 +11,7 @@ struct OrderResults: Codable {
     let results: [Order]
 }
 
-struct Order: Codable, Identifiable {
+struct Order: Codable, Identifiable, Equatable {
     let id: Int
     let name: String
 }
