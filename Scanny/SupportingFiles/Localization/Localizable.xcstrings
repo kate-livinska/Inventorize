@@ -4,7 +4,7 @@
     "Box: %@" : {
 
     },
-    "EAN: %@" : {
+    "EAN: %lld" : {
 
     },
     "Email is not valid." : {
