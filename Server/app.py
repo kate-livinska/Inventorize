@@ -31,7 +31,8 @@ class OrderItem(db.Model):
     ean = db.Column(db.Integer)
     quantity = db.Column(db.Integer)
     box = db.Column(db.String(50))
-    order_id = db.Column(db.Integer, db.ForeignKey('order.id'), nullable=False)  # Added foreign key relationship
+    inventoried = db.Column(db.Boolean, default=False) 
+    order_id = db.Column(db.Integer, db.ForeignKey('order.id'), nullable=False) 
 
 # Routes
 @app.route('/login', methods=['POST'])
@@ -80,7 +81,7 @@ def get_order_details(order_id):
         abort(404, f"Order with ID {order_id} not found.")
 
     items = order.items
-    result = [{"id": item.id, "sku": item.sku, "quantity": item.quantity, "box": item.box, "ean": item.ean} for item in items]
+    result = [{"id": item.id, "sku": item.sku, "quantity": item.quantity, "inventoried": item.inventoried, "box": item.box, "ean": item.ean} for item in items]
     return jsonify({"results": result})
 
 @app.route('/orders/<order_id>/items/<item_id>', methods=['POST'])
@@ -94,12 +95,13 @@ def handle_order_item(order_id, item_id):
     # Create new OrderItem
     new_item = OrderItem(sku="example_sku", quantity=data["quantity"], 
                         box="example_box", 
-                        ean=123456, 
+                        ean=123456,
+                        inventoried=False, 
                         order_id=int(order_id))
     db.session.execute
     db.session.add(new_item)
     db.session.commit()
-    return jsonify({"id": new_item.id, "sku": new_item.sku, "quantity": new_item.quantity, "box": new_item.box, "ean": new_item.ean})
+    return jsonify({"id": new_item.id, "sku": new_item.sku, "inventoried": new_item.inventoried, "quantity": new_item.quantity, "box": new_item.box, "ean": new_item.ean})
 
 @app.route('/orders/<order_id>/items/<sku>', methods=['GET'])
 def get_order_item(order_id, sku):
@@ -113,7 +115,7 @@ def get_order_item(order_id, sku):
     if not item:
         abort(404, f"Item with SKU {sku} not found in order with ID {order_id}.")
 
-    result = {"id": item.id, "sku": item.sku, "quantity": item.quantity, "box": item.box, "ean": item.ean}
+    result = {"id": item.id, "sku": item.sku, "quantity": item.quantity, "box": item.box, "inventoried": item.inventoried, "ean": item.ean}
     return jsonify(result)
 
 @app.route('/create_order', methods=['POST'])
@@ -142,6 +144,7 @@ def create_order():
             ean=item_data.get("ean", 123456),
             quantity=item_data.get("quantity", 1),
             box=item_data.get("box", "example_box"),
+            inventoried= item_data.get("inventoried", "false"),
             order_id=new_order.id
         )
         print(order_name)
