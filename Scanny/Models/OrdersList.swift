@@ -13,9 +13,7 @@ struct OrdersList<CardContent> where CardContent: Equatable {
     init(ordersNumber: Int, contentFactory: (Int) -> CardContent) {
         for i in 0..<ordersNumber {
             let content = contentFactory(i)
-            if !ordersCards.contains(where: { $0.content == content}) {
-                ordersCards.append(Card(id: i, content: content))
-            }
+            ordersCards.append(Card(id: i, content: content))
         }
         print(ordersCards)
     }
@@ -24,7 +22,7 @@ struct OrdersList<CardContent> where CardContent: Equatable {
     
     mutating func choose(_ card: Card) {
         if let chosenIndex = ordersCards.firstIndex(where: { $0.id == card.id}) {
-            ordersCards[chosenIndex].wasOpened = true
+            //ordersCards[chosenIndex].wasOpened = true
             chosenOrderId = ordersCards[chosenIndex].content
             print(ordersCards[chosenIndex])
         }
@@ -33,7 +31,7 @@ struct OrdersList<CardContent> where CardContent: Equatable {
     struct Card: Identifiable {
         let id: Int
         let content: CardContent
-        var wasOpened = false
+        //var wasOpened = false
     }
 }
 

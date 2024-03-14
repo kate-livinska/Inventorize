@@ -9,7 +9,7 @@ import SwiftUI
 
 struct OrdersListView: View {
     @ObservedObject var orderListVM = OrdersListViewModel()
-    @State private var isShowingScannerView = false
+    //@State private var isShowingScannerView = false
     
     var body: some View {
         VStack {
@@ -19,14 +19,13 @@ struct OrdersListView: View {
             if orderListVM.isLoading {
                 ProgressView("ProgressView.Text".localized)
             } else {
-                List(orderListVM.orders) { order in
-                    OrderView(order)
-                        .padding(1)
-                        .onTapGesture {
-                            orderListVM.choose(order)
-                            isShowingScannerView.toggle()
-                        }
+                NavigationSplitView {
+                    ordersList
+                        .navigationTitle("OrdersListView.Orders.Title".localized)
                 }
+            detail: {
+                Text("Select an order")
+            }
             }
             HStack {
                 Button("Log Out") {
@@ -36,24 +35,32 @@ struct OrdersListView: View {
             }
             .padding()
         }
-        .sheet(isPresented: $isShowingScannerView) {
-            OrderDetailsView(order: orderListVM.chosen)
-        }
+//        .sheet(isPresented: $isShowingScannerView) {
+//            OrderDetailsView(order: orderListVM.chosen)
+//        }
     }
     
     var ordersList: some View {
         List(orderListVM.orders) { order in
-            OrderView(order)
-                .padding(1)
-                .onTapGesture {
-                    orderListVM.choose(order)
-                    isShowingScannerView.toggle()
-                }
+            NavigationLink {
+                OrderDetailsView(order: order.content)
+            } label: {
+                OrderView(order)
+                    .padding(1)
+//                    .onTapGesture {
+//                        orderListVM.choose(order)
+//                        //isShowingScannerView.toggle()
+//                    }
+            }
+        }
+        .refreshable {
+            orderListVM.refresh()
         }
     }
 }
                         
 struct OrderView: View {
+    @ObservedObject var state = OrderState.shared
     let order: OrdersList<Order>.Card
     
     init(_ order: OrdersList<Order>.Card) {
@@ -66,8 +73,8 @@ struct OrderView: View {
             Text(order.content.name)
         }
         .font(.system(size: 16))
-        .foregroundStyle(order.wasOpened ? .gray : .primaryColor)
-        .fontWeight(order.wasOpened ? .light : .bold)
+        .foregroundStyle(OrderState.shared.openedOrders.contains(order.content.id) ? .gray : .primaryColor)
+        .fontWeight(OrderState.shared.openedOrders.contains(order.content.id) ? .light : .bold)
         .padding()
     }
 }

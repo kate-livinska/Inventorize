@@ -22,6 +22,11 @@ struct OrderDetailsView: View {
         }
         .onAppear {
             itemService.fetchItems(id: order.id)
+            print("openedOrders: \(OrderState.shared.openedOrders)")
+            if !OrderState.shared.openedOrders.contains(order.id) {
+                OrderState.shared.openedOrders.append(order.id)
+            }
+            print("openedOrders: \(OrderState.shared.openedOrders)")
         }
         
     }

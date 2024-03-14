@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		410159C02BA35E5C00F0949D /* OrderState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410159BF2BA35E5C00F0949D /* OrderState.swift */; };
 		411D518C2B4D3EF8008650EF /* ScannyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411D518B2B4D3EF8008650EF /* ScannyApp.swift */; };
 		411D518E2B4D3EF8008650EF /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411D518D2B4D3EF8008650EF /* RootView.swift */; };
 		411D51902B4D3EF9008650EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 411D518F2B4D3EF9008650EF /* Assets.xcassets */; };
@@ -33,6 +34,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		410159BF2BA35E5C00F0949D /* OrderState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderState.swift; sourceTree = "<group>"; };
 		411D51882B4D3EF8008650EF /* Scanny.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scanny.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		411D518B2B4D3EF8008650EF /* ScannyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannyApp.swift; sourceTree = "<group>"; };
 		411D518D2B4D3EF8008650EF /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 				411D51BA2B516047008650EF /* OrdersList.swift */,
 				411D51AC2B4D587B008650EF /* LoginData.swift */,
 				411D51B02B50133A008650EF /* OrderData.swift */,
+				410159BF2BA35E5C00F0949D /* OrderState.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -276,6 +279,7 @@
 				411D519A2B4D4164008650EF /* LoginView.swift in Sources */,
 				411D518E2B4D3EF8008650EF /* RootView.swift in Sources */,
 				411D51A72B4D56A5008650EF /* LoginViewModel.swift in Sources */,
+				410159C02BA35E5C00F0949D /* OrderState.swift in Sources */,
 				411D518C2B4D3EF8008650EF /* ScannyApp.swift in Sources */,
 				41A6E0282B6CD21900D666D1 /* ContentView.swift in Sources */,
 				41ED6F7E2B597C57002A7F60 /* OrdersListViewModel.swift in Sources */,

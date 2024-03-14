@@ -32,6 +32,7 @@ class OrdersListViewModel: ObservableObject {
     
     func choose(_ order: OrdersList<Order>.Card) {
         ordersList.choose(order)
+        
         print(order.id)
     }
     
@@ -43,5 +44,9 @@ class OrdersListViewModel: ObservableObject {
     
     func logout() {
         Auth.shared.logout()
+    }
+    
+    func refresh() {
+        DataService.shared.fetchOrders()
     }
 }
