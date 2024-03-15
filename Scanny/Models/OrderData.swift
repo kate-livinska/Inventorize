@@ -26,4 +26,5 @@ struct Item: Codable, Identifiable {
     let sku: String
     var quantity: Int
     let box: String
+    var inventoried: Bool
 }

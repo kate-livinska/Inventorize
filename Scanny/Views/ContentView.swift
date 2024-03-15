@@ -11,7 +11,6 @@ struct ContentView: View {
     var body: some View {
         RootView()
             .environmentObject(Auth.shared)
-            .environmentObject(DataService.shared)
     }
 }
 

@@ -9,7 +9,6 @@ import SwiftUI
 
 struct RootView: View {
     @EnvironmentObject var auth: Auth
-    @EnvironmentObject var dataService: DataService
     
     var body: some View {
         if auth.loggedIn {

@@ -8,14 +8,17 @@
 import SwiftUI
 
 struct OrderDetailsView: View {
-    var order: Order
     @ObservedObject var itemService = DataService()
+    var order: Order
     
     var body: some View {
         VStack {
-            Text(order.name)
-                .font(.title)
-            Text(String(order.id))
+            HStack {
+                Text(order.name)
+                Text(String(order.id))
+            }
+            .font(.subheadline)
+            .fontWeight(.bold)
             List(itemService.fetchedItems) {
                 ItemView($0)
             }
@@ -41,15 +44,19 @@ struct ItemView: View {
     
     var body: some View {
         HStack {
-            VStack {
+            VStack(alignment: .leading) {
                 Text("EAN: \(item.ean)")
                 Text("SKU: \(item.sku)")
             }
-            VStack {
+            Spacer()
+            VStack(alignment: .trailing) {
                 Text("Qty: \(String(item.quantity))")
-                Text("Box: \(String(item.box))")
             }
+            Text("Box: \(String(item.box))")
+                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
         }
+        .background(item.inventoried ? Color.mint : Color.clear)
+        
     }
 }
 

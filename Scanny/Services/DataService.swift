@@ -8,14 +8,10 @@
 import Foundation
 
 class DataService: NetworkBase, ObservableObject {
-    static let shared = DataService()
+    //static let shared = DataService()
     @Published var fetchedOrders = [Order]()
     @Published var fetchedItems = [Item]()
-    
-    init() {
-        fetchOrders()
-    }
-   
+
     enum Endpoint: EndpointProtocol {
         case orders
         //case items
