@@ -25,7 +25,6 @@ struct OrderDetailsView: View {
         }
         .onAppear {
             itemService.fetchItems(id: order.id)
-            print("openedOrders: \(OrderState.shared.openedOrders)")
             if !OrderState.shared.openedOrders.contains(order.id) {
                 OrderState.shared.openedOrders.append(order.id)
             }
@@ -55,7 +54,7 @@ struct ItemView: View {
             Text("Box: \(String(item.box))")
                 .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
         }
-        .background(item.inventoried ? Color.mint : Color.clear)
+        .listRowBackground(item.inventoried ? Color.mint : Color.clear)
         
     }
 }
