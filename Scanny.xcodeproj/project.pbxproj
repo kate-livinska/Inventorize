@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		410159C02BA35E5C00F0949D /* OrderState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410159BF2BA35E5C00F0949D /* OrderState.swift */; };
+		410159C22BA4A87600F0949D /* ItemsInventory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410159C12BA4A87600F0949D /* ItemsInventory.swift */; };
+		410159C62BA5A23F00F0949D /* ItemsInventoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410159C52BA5A23F00F0949D /* ItemsInventoryView.swift */; };
 		411D518C2B4D3EF8008650EF /* ScannyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411D518B2B4D3EF8008650EF /* ScannyApp.swift */; };
 		411D518E2B4D3EF8008650EF /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411D518D2B4D3EF8008650EF /* RootView.swift */; };
 		411D51902B4D3EF9008650EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 411D518F2B4D3EF9008650EF /* Assets.xcassets */; };
@@ -35,6 +37,8 @@
 
 /* Begin PBXFileReference section */
 		410159BF2BA35E5C00F0949D /* OrderState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderState.swift; sourceTree = "<group>"; };
+		410159C12BA4A87600F0949D /* ItemsInventory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsInventory.swift; sourceTree = "<group>"; };
+		410159C52BA5A23F00F0949D /* ItemsInventoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsInventoryView.swift; sourceTree = "<group>"; };
 		411D51882B4D3EF8008650EF /* Scanny.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scanny.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		411D518B2B4D3EF8008650EF /* ScannyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannyApp.swift; sourceTree = "<group>"; };
 		411D518D2B4D3EF8008650EF /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
@@ -160,6 +164,7 @@
 				41ED6F7F2B597C62002A7F60 /* OrdersListView.swift */,
 				41A6E02D2B7BFF7100D666D1 /* OrderDetailsView.swift */,
 				4193810D2B6287780004FC91 /* ScannerView.swift */,
+				410159C52BA5A23F00F0949D /* ItemsInventoryView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -169,6 +174,7 @@
 			children = (
 				411D51A62B4D56A5008650EF /* LoginViewModel.swift */,
 				41ED6F7D2B597C57002A7F60 /* OrdersListViewModel.swift */,
+				410159C12BA4A87600F0949D /* ItemsInventory.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -264,6 +270,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				41ED6F772B5527B2002A7F60 /* KeychainManager.swift in Sources */,
+				410159C62BA5A23F00F0949D /* ItemsInventoryView.swift in Sources */,
 				411D51A12B4D4B2B008650EF /* StringExtensions.swift in Sources */,
 				411D51B72B51433E008650EF /* Constants.swift in Sources */,
 				4193810E2B6287780004FC91 /* ScannerView.swift in Sources */,
@@ -278,6 +285,7 @@
 				4193810C2B6276EC0004FC91 /* DataService.swift in Sources */,
 				411D519A2B4D4164008650EF /* LoginView.swift in Sources */,
 				411D518E2B4D3EF8008650EF /* RootView.swift in Sources */,
+				410159C22BA4A87600F0949D /* ItemsInventory.swift in Sources */,
 				411D51A72B4D56A5008650EF /* LoginViewModel.swift in Sources */,
 				410159C02BA35E5C00F0949D /* OrderState.swift in Sources */,
 				411D518C2B4D3EF8008650EF /* ScannyApp.swift in Sources */,

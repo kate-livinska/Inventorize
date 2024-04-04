@@ -33,6 +33,8 @@ class Auth: ObservableObject {
     
     func logout() {
         try? KeychainManager.deleteToken()
-        loggedIn = false
+        DispatchQueue.main.async {
+            self.loggedIn = false
+        }
     }
 }

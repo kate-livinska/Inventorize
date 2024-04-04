@@ -8,9 +8,10 @@
 import Foundation
 
 class DataService: NetworkBase, ObservableObject {
-    //static let shared = DataService()
+    static let shared = DataService()
     @Published var fetchedOrders = [Order]()
     @Published var fetchedItems = [Item]()
+    @Published var isLoading = false
 
     enum Endpoint: EndpointProtocol {
         case orders
@@ -70,6 +71,7 @@ class DataService: NetworkBase, ObservableObject {
     
     func fetchItems(id: Int) {
         let directoryStr = "/\(String(id))"
+        isLoading = true
         Task {
             do {
                 let orderDetails = try await self.fetch(
@@ -80,6 +82,7 @@ class DataService: NetworkBase, ObservableObject {
                 )
                 DispatchQueue.main.async {
                     self.fetchedItems = orderDetails.results
+                    self.isLoading = false
                 }
             } catch {
                 print("Error: Data request failed. \(error.localizedDescription)")

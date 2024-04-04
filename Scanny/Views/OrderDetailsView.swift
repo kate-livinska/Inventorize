@@ -13,14 +13,22 @@ struct OrderDetailsView: View {
     
     var body: some View {
         VStack {
-            HStack {
-                Text(order.name)
-                Text(String(order.id))
-            }
-            .font(.subheadline)
-            .fontWeight(.bold)
-            List(itemService.fetchedItems) {
-                ItemView($0)
+            if itemService.isLoading {
+                VStack {
+                    Spacer()
+                    ProgressView()
+                        .progressViewStyle(CircularProgressViewStyle())
+                        .scaleEffect(5)
+                    Spacer()
+                }
+            } else {
+                VStack {
+                    ScannerView()
+                    ItemsInventoryView(items: itemService.fetchedItems)
+                }
+                .refreshable {
+                    itemService.fetchItems(id: order.id)
+                }
             }
         }
         .onAppear {
@@ -30,35 +38,11 @@ struct OrderDetailsView: View {
             }
             print("openedOrders: \(OrderState.shared.openedOrders)")
         }
-        
     }
 }
 
-struct ItemView: View {
-    let item: Item
-    
-    init(_ item: Item) {
-        self.item = item
-    }
-    
-    var body: some View {
-        HStack {
-            VStack(alignment: .leading) {
-                Text("EAN: \(item.ean)")
-                Text("SKU: \(item.sku)")
-            }
-            Spacer()
-            VStack(alignment: .trailing) {
-                Text("Qty: \(String(item.quantity))")
-            }
-            Text("Box: \(String(item.box))")
-                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-        }
-        .listRowBackground(item.inventoried ? Color.mint : Color.clear)
-        
-    }
-}
+
 
 #Preview {
-    OrderDetailsView(order: Scanny.Order(id: 80429, name: "Order f037qVAbOiHCLA"))
+    OrderDetailsView(itemService: DataService(), order: Scanny.Order(id: 80429, name: "Order f037qVAbOiHCLA"))
 }
