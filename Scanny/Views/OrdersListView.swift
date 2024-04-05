@@ -72,4 +72,5 @@ struct OrderView: View {
 
 #Preview {
     OrdersListView()
+        .modelContainer(for: [InventoryItem.self])
 }

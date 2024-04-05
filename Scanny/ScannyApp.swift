@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct ScannyApp: App {
@@ -14,5 +15,6 @@ struct ScannyApp: App {
         WindowGroup {
             ContentView()
         }
+        .modelContainer(for: [InventoryItem.self])
     }
 }

@@ -6,10 +6,13 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ItemsInventoryView: View {
-    var items: [Item]
+    //var items: [Item]
     //@ObservedObject var inventory = ItemsInventory()
+    @Environment(\.modelContext) private var context
+    @Query var items: [InventoryItem]
     
     var body: some View {
         List(items) {
@@ -19,9 +22,9 @@ struct ItemsInventoryView: View {
 }
 
 struct ItemView: View {
-    let item: Item
+    let item: InventoryItem
     
-    init(_ item: Item) {
+    init(_ item: InventoryItem) {
         self.item = item
     }
     
@@ -43,5 +46,6 @@ struct ItemView: View {
 }
 
 #Preview {
-    ItemsInventoryView(items: [Item]())
+    ItemsInventoryView()
+        .modelContainer(for: [InventoryItem.self])
 }

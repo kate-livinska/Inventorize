@@ -8,31 +8,46 @@
 import SwiftUI
 
 struct OrderDetailsView: View {
+    @Environment(\.modelContext) private var context
     @ObservedObject var itemService = DataService()
     var order: Order
     
     var body: some View {
         VStack {
-            if itemService.isLoading {
-                VStack {
-                    Spacer()
-                    ProgressView()
-                        .progressViewStyle(CircularProgressViewStyle())
-                        .scaleEffect(5)
-                    Spacer()
+            ScannerView()
+            ItemsInventoryView()
+            //Temporary test button to delete all persistent data
+            Button(action: {
+                do {
+                    try context.delete(model: InventoryItem.self)
+                } catch {
+                    print("Failed to delete all schools.")
                 }
-            } else {
-                VStack {
-                    ScannerView()
-                    ItemsInventoryView(items: itemService.fetchedItems)
-                }
-                .refreshable {
-                    itemService.fetchItems(id: order.id)
-                }
-            }
+            }, label: {
+                Text("Delete Data")
+            })
+//            if itemService.isLoading {
+//                VStack {
+//                    Spacer()
+//                    ProgressView()
+//                        .progressViewStyle(CircularProgressViewStyle())
+//                        .scaleEffect(5)
+//                    Spacer()
+//                }
+//            } else {
+//                VStack {
+//                    ScannerView()
+//                    ItemsInventoryView()
+//                }
+//                .refreshable {
+//                    //itemService.fetchItems(id: order.id)
+//                }
+//            }
         }
         .onAppear {
-            itemService.fetchItems(id: order.id)
+            Task {
+                await itemService.updateLocalDatabase(modelContext: context, id: order.id)
+            }
             if !OrderState.shared.openedOrders.contains(order.id) {
                 OrderState.shared.openedOrders.append(order.id)
             }
@@ -45,4 +60,5 @@ struct OrderDetailsView: View {
 
 #Preview {
     OrderDetailsView(itemService: DataService(), order: Scanny.Order(id: 80429, name: "Order f037qVAbOiHCLA"))
+        .modelContainer(for: [InventoryItem.self])
 }

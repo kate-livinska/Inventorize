@@ -10,6 +10,7 @@
 		410159C02BA35E5C00F0949D /* OrderState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410159BF2BA35E5C00F0949D /* OrderState.swift */; };
 		410159C22BA4A87600F0949D /* ItemsInventory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410159C12BA4A87600F0949D /* ItemsInventory.swift */; };
 		410159C62BA5A23F00F0949D /* ItemsInventoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410159C52BA5A23F00F0949D /* ItemsInventoryView.swift */; };
+		410159C82BBEB47E00F0949D /* InventoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410159C72BBEB47E00F0949D /* InventoryItem.swift */; };
 		411D518C2B4D3EF8008650EF /* ScannyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411D518B2B4D3EF8008650EF /* ScannyApp.swift */; };
 		411D518E2B4D3EF8008650EF /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411D518D2B4D3EF8008650EF /* RootView.swift */; };
 		411D51902B4D3EF9008650EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 411D518F2B4D3EF9008650EF /* Assets.xcassets */; };
@@ -39,6 +40,7 @@
 		410159BF2BA35E5C00F0949D /* OrderState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderState.swift; sourceTree = "<group>"; };
 		410159C12BA4A87600F0949D /* ItemsInventory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsInventory.swift; sourceTree = "<group>"; };
 		410159C52BA5A23F00F0949D /* ItemsInventoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsInventoryView.swift; sourceTree = "<group>"; };
+		410159C72BBEB47E00F0949D /* InventoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryItem.swift; sourceTree = "<group>"; };
 		411D51882B4D3EF8008650EF /* Scanny.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scanny.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		411D518B2B4D3EF8008650EF /* ScannyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannyApp.swift; sourceTree = "<group>"; };
 		411D518D2B4D3EF8008650EF /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 				411D51AC2B4D587B008650EF /* LoginData.swift */,
 				411D51B02B50133A008650EF /* OrderData.swift */,
 				410159BF2BA35E5C00F0949D /* OrderState.swift */,
+				410159C72BBEB47E00F0949D /* InventoryItem.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -273,6 +276,7 @@
 				410159C62BA5A23F00F0949D /* ItemsInventoryView.swift in Sources */,
 				411D51A12B4D4B2B008650EF /* StringExtensions.swift in Sources */,
 				411D51B72B51433E008650EF /* Constants.swift in Sources */,
+				410159C82BBEB47E00F0949D /* InventoryItem.swift in Sources */,
 				4193810E2B6287780004FC91 /* ScannerView.swift in Sources */,
 				411D51BB2B516047008650EF /* OrdersList.swift in Sources */,
 				411D51AD2B4D587B008650EF /* LoginData.swift in Sources */,

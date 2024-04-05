@@ -6,12 +6,13 @@
 //
 
 import Foundation
+import SwiftData
 
 class DataService: NetworkBase, ObservableObject {
     static let shared = DataService()
     @Published var fetchedOrders = [Order]()
     @Published var fetchedItems = [Item]()
-    @Published var isLoading = false
+    @Published var isLoading = true
 
     enum Endpoint: EndpointProtocol {
         case orders
@@ -69,24 +70,65 @@ class DataService: NetworkBase, ObservableObject {
         }
     }
     
-    func fetchItems(id: Int) {
+    func fetchItems(id: Int) async -> [Item]? {
         let directoryStr = "/\(String(id))"
-        isLoading = true
-        Task {
-            do {
-                let orderDetails = try await self.fetch(
-                    OrderDetails.self,
-                    endpoint: .orders,
-                    directory: directoryStr,
-                    request: .orders
-                )
-                DispatchQueue.main.async {
-                    self.fetchedItems = orderDetails.results
-                    self.isLoading = false
-                }
-            } catch {
-                print("Error: Data request failed. \(error.localizedDescription)")
-            }
+        do {
+            let orderDetails = try await self.fetch(
+                OrderDetails.self,
+                endpoint: .orders,
+                directory: directoryStr,
+                request: .orders
+            )
+//            DispatchQueue.main.async {
+//                self.isLoading = false
+//            }
+            return orderDetails.results
+            
+        } catch {
+            print("Error: Data request failed. \(error.localizedDescription)")
         }
+//        Task {
+//            do {
+//                let orderDetails = try await self.fetch(
+//                    OrderDetails.self,
+//                    endpoint: .orders,
+//                    directory: directoryStr,
+//                    request: .orders
+//                )
+//                
+//                DispatchQueue.main.async {
+//                    self.fetchedItems = orderDetails.results
+//                    print("Fetched items \(self.fetchedItems)")
+//                    self.isLoading = false
+//                }
+//            } catch {
+//                print("Error: Data request failed. \(error.localizedDescription)")
+//            }
+//        }
+        return nil
+    }
+}
+
+//MARK: - Transfer data to local Database
+extension DataService {
+    @MainActor
+    func updateLocalDatabase(modelContext: ModelContext, id: Int) async {
+        
+        guard let items = await fetchItems(id: id) else { return }
+        do {
+            try modelContext.transaction {
+                for eachItem in items {
+                    let itemToStore = InventoryItem(eachItem)
+                    modelContext.insert(itemToStore)
+                }
+            }
+        } catch {
+                print("Error saving data to database")
+            }
+//        print("saved to DB: \(items.count)")
+//        for eachItem in items {
+//            let itemToStore = InventoryItem(eachItem)
+//            modelContext.insert(itemToStore)
+//        }
     }
 }
