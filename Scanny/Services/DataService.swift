@@ -8,6 +8,7 @@
 import Foundation
 import SwiftData
 
+@MainActor
 class DataService: NetworkBase, ObservableObject {
     static let shared = DataService()
     @Published var fetchedOrders = [Order]()
@@ -61,9 +62,7 @@ class DataService: NetworkBase, ObservableObject {
                     endpoint: .orders,
                     request: .orders
                 )
-                DispatchQueue.main.async {
-                    self.fetchedOrders = orders.results
-                }
+                self.fetchedOrders = orders.results
             } catch {
                 print("Error: Data request failed. \(error.localizedDescription)")
             }
@@ -79,39 +78,18 @@ class DataService: NetworkBase, ObservableObject {
                 directory: directoryStr,
                 request: .orders
             )
-//            DispatchQueue.main.async {
-//                self.isLoading = false
-//            }
+            self.isLoading = false
             return orderDetails.results
             
         } catch {
             print("Error: Data request failed. \(error.localizedDescription)")
         }
-//        Task {
-//            do {
-//                let orderDetails = try await self.fetch(
-//                    OrderDetails.self,
-//                    endpoint: .orders,
-//                    directory: directoryStr,
-//                    request: .orders
-//                )
-//                
-//                DispatchQueue.main.async {
-//                    self.fetchedItems = orderDetails.results
-//                    print("Fetched items \(self.fetchedItems)")
-//                    self.isLoading = false
-//                }
-//            } catch {
-//                print("Error: Data request failed. \(error.localizedDescription)")
-//            }
-//        }
         return nil
     }
 }
 
 //MARK: - Transfer data to local Database
 extension DataService {
-    @MainActor
     func updateLocalDatabase(modelContext: ModelContext, id: Int) async {
         
         guard let items = await fetchItems(id: id) else { return }
@@ -123,12 +101,7 @@ extension DataService {
                 }
             }
         } catch {
-                print("Error saving data to database")
-            }
-//        print("saved to DB: \(items.count)")
-//        for eachItem in items {
-//            let itemToStore = InventoryItem(eachItem)
-//            modelContext.insert(itemToStore)
-//        }
+            print("Error saving data to database")
+        }
     }
 }

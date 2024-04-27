@@ -23,9 +23,6 @@
     "Email is not valid." : {
 
     },
-    "Log Out" : {
-
-    },
     "Login.LoginButton.Title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -76,7 +73,18 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Username"
+            "value" : "Email"
+          }
+        }
+      }
+    },
+    "OrdersListView.LogoutButton.Title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Log Out"
           }
         }
       }

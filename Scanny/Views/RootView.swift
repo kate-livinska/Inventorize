@@ -19,6 +19,7 @@ struct RootView: View {
     }
 }
 
-//#Preview {
-//    RootView()
-//}
+#Preview {
+    RootView()
+        .environmentObject(Auth.shared)
+}

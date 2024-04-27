@@ -6,11 +6,10 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct OrderDetailsView: View {
-    @Environment(\.modelContext) private var context
-    @ObservedObject var itemService = DataService()
-    var order: Order
+    @Environment(\.modelContext) private var context //temp for Delete Data button
     
     var body: some View {
         VStack {
@@ -21,44 +20,15 @@ struct OrderDetailsView: View {
                 do {
                     try context.delete(model: InventoryItem.self)
                 } catch {
-                    print("Failed to delete all schools.")
+                    print("Failed to delete.")
                 }
             }, label: {
                 Text("Delete Data")
             })
-//            if itemService.isLoading {
-//                VStack {
-//                    Spacer()
-//                    ProgressView()
-//                        .progressViewStyle(CircularProgressViewStyle())
-//                        .scaleEffect(5)
-//                    Spacer()
-//                }
-//            } else {
-//                VStack {
-//                    ScannerView()
-//                    ItemsInventoryView()
-//                }
-//                .refreshable {
-//                    //itemService.fetchItems(id: order.id)
-//                }
-//            }
-        }
-        .onAppear {
-            Task {
-                await itemService.updateLocalDatabase(modelContext: context, id: order.id)
-            }
-            if !OrderState.shared.openedOrders.contains(order.id) {
-                OrderState.shared.openedOrders.append(order.id)
-            }
-            print("openedOrders: \(OrderState.shared.openedOrders)")
         }
     }
 }
 
-
-
 #Preview {
-    OrderDetailsView(itemService: DataService(), order: Scanny.Order(id: 80429, name: "Order f037qVAbOiHCLA"))
-        .modelContainer(for: [InventoryItem.self])
+    OrderDetailsView()
 }

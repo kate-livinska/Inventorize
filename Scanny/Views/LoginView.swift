@@ -17,10 +17,8 @@ struct LoginView: View {
                 .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                 .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
             VStack {
-                HStack {
-                    Text("Login.UsernameField.Title".localized)
-                    Spacer()
-                }
+                Text("Login.UsernameField.Title".localized)
+                    .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .leading)
                 TextField("Login.UsernameField.Title".localized, text: $loginVM.username, onEditingChanged: { (isChanged) in
                     if !isChanged {
                         if self.textFieldValidatorEmail(loginVM.username) {
@@ -34,19 +32,16 @@ struct LoginView: View {
                 .textInputAutocapitalization(.never)
                 .disableAutocorrection(true)
                 .textFieldStyle(.roundedBorder)
+                if !self.isEmailValid {
+                    Text("Email is not valid.")
+                        .font(.callout)
+                        .foregroundColor(Color.red)
+                }
             }.padding()
             
-            if !self.isEmailValid {
-                Text("Email is not valid.")
-                    .font(.callout)
-                    .foregroundColor(Color.red)
-            }
-            
             VStack {
-                HStack {
-                    Text("Login.PasswordField.Title".localized)
-                    Spacer()
-                }
+                Text("Login.PasswordField.Title".localized)
+                    .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .leading)
                 SecureField(text: $loginVM.password, prompt: Text("Login.PasswordField.Prompt".localized)) {
                     Text("Login.PasswordField.Title".localized)
                 }

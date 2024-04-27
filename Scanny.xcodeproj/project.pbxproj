@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		410159C02BA35E5C00F0949D /* OrderState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410159BF2BA35E5C00F0949D /* OrderState.swift */; };
-		410159C22BA4A87600F0949D /* ItemsInventory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410159C12BA4A87600F0949D /* ItemsInventory.swift */; };
 		410159C62BA5A23F00F0949D /* ItemsInventoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410159C52BA5A23F00F0949D /* ItemsInventoryView.swift */; };
 		410159C82BBEB47E00F0949D /* InventoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410159C72BBEB47E00F0949D /* InventoryItem.swift */; };
 		411D518C2B4D3EF8008650EF /* ScannyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411D518B2B4D3EF8008650EF /* ScannyApp.swift */; };
@@ -22,7 +20,7 @@
 		411D51AD2B4D587B008650EF /* LoginData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411D51AC2B4D587B008650EF /* LoginData.swift */; };
 		411D51B12B50133A008650EF /* OrderData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411D51B02B50133A008650EF /* OrderData.swift */; };
 		411D51B72B51433E008650EF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411D51B62B51433E008650EF /* Constants.swift */; };
-		411D51BB2B516047008650EF /* OrdersList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411D51BA2B516047008650EF /* OrdersList.swift */; };
+		4138B4A02BDD876200DC742E /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4138B49F2BDD876200DC742E /* SampleData.swift */; };
 		4193810C2B6276EC0004FC91 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193810B2B6276EC0004FC91 /* DataService.swift */; };
 		4193810E2B6287780004FC91 /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193810D2B6287780004FC91 /* ScannerView.swift */; };
 		41A6E0282B6CD21900D666D1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A6E0272B6CD21900D666D1 /* ContentView.swift */; };
@@ -32,13 +30,10 @@
 		41A6E0302B88B0C500D666D1 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A6E02F2B88B0C400D666D1 /* ColorExtensions.swift */; };
 		41ED6F772B5527B2002A7F60 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41ED6F762B5527B2002A7F60 /* KeychainManager.swift */; };
 		41ED6F7C2B592EA3002A7F60 /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41ED6F7B2B592EA3002A7F60 /* Auth.swift */; };
-		41ED6F7E2B597C57002A7F60 /* OrdersListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41ED6F7D2B597C57002A7F60 /* OrdersListViewModel.swift */; };
 		41ED6F802B597C62002A7F60 /* OrdersListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41ED6F7F2B597C62002A7F60 /* OrdersListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		410159BF2BA35E5C00F0949D /* OrderState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderState.swift; sourceTree = "<group>"; };
-		410159C12BA4A87600F0949D /* ItemsInventory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsInventory.swift; sourceTree = "<group>"; };
 		410159C52BA5A23F00F0949D /* ItemsInventoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsInventoryView.swift; sourceTree = "<group>"; };
 		410159C72BBEB47E00F0949D /* InventoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryItem.swift; sourceTree = "<group>"; };
 		411D51882B4D3EF8008650EF /* Scanny.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scanny.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -53,7 +48,7 @@
 		411D51AC2B4D587B008650EF /* LoginData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginData.swift; sourceTree = "<group>"; };
 		411D51B02B50133A008650EF /* OrderData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderData.swift; sourceTree = "<group>"; };
 		411D51B62B51433E008650EF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		411D51BA2B516047008650EF /* OrdersList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersList.swift; sourceTree = "<group>"; };
+		4138B49F2BDD876200DC742E /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
 		4193810B2B6276EC0004FC91 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		4193810D2B6287780004FC91 /* ScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
 		41A6E0272B6CD21900D666D1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -63,7 +58,6 @@
 		41A6E02F2B88B0C400D666D1 /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
 		41ED6F762B5527B2002A7F60 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		41ED6F7B2B592EA3002A7F60 /* Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
-		41ED6F7D2B597C57002A7F60 /* OrdersListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersListViewModel.swift; sourceTree = "<group>"; };
 		41ED6F7F2B597C62002A7F60 /* OrdersListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -116,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				411D51922B4D3EF9008650EF /* Preview Assets.xcassets */,
+				4138B49F2BDD876200DC742E /* SampleData.swift */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -149,10 +144,8 @@
 			isa = PBXGroup;
 			children = (
 				41A6E0292B722B9E00D666D1 /* NetworkBase.swift */,
-				411D51BA2B516047008650EF /* OrdersList.swift */,
 				411D51AC2B4D587B008650EF /* LoginData.swift */,
 				411D51B02B50133A008650EF /* OrderData.swift */,
-				410159BF2BA35E5C00F0949D /* OrderState.swift */,
 				410159C72BBEB47E00F0949D /* InventoryItem.swift */,
 			);
 			path = Models;
@@ -176,8 +169,6 @@
 			isa = PBXGroup;
 			children = (
 				411D51A62B4D56A5008650EF /* LoginViewModel.swift */,
-				41ED6F7D2B597C57002A7F60 /* OrdersListViewModel.swift */,
-				410159C12BA4A87600F0949D /* ItemsInventory.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -228,7 +219,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1520;
-				LastUpgradeCheck = 1520;
+				LastUpgradeCheck = 1530;
 				TargetAttributes = {
 					411D51872B4D3EF8008650EF = {
 						CreatedOnToolsVersion = 15.2;
@@ -273,12 +264,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				41ED6F772B5527B2002A7F60 /* KeychainManager.swift in Sources */,
+				4138B4A02BDD876200DC742E /* SampleData.swift in Sources */,
 				410159C62BA5A23F00F0949D /* ItemsInventoryView.swift in Sources */,
 				411D51A12B4D4B2B008650EF /* StringExtensions.swift in Sources */,
 				411D51B72B51433E008650EF /* Constants.swift in Sources */,
 				410159C82BBEB47E00F0949D /* InventoryItem.swift in Sources */,
 				4193810E2B6287780004FC91 /* ScannerView.swift in Sources */,
-				411D51BB2B516047008650EF /* OrdersList.swift in Sources */,
 				411D51AD2B4D587B008650EF /* LoginData.swift in Sources */,
 				411D51B12B50133A008650EF /* OrderData.swift in Sources */,
 				41A6E02C2B7238AC00D666D1 /* LoginService.swift in Sources */,
@@ -289,12 +280,9 @@
 				4193810C2B6276EC0004FC91 /* DataService.swift in Sources */,
 				411D519A2B4D4164008650EF /* LoginView.swift in Sources */,
 				411D518E2B4D3EF8008650EF /* RootView.swift in Sources */,
-				410159C22BA4A87600F0949D /* ItemsInventory.swift in Sources */,
 				411D51A72B4D56A5008650EF /* LoginViewModel.swift in Sources */,
-				410159C02BA35E5C00F0949D /* OrderState.swift in Sources */,
 				411D518C2B4D3EF8008650EF /* ScannyApp.swift in Sources */,
 				41A6E0282B6CD21900D666D1 /* ContentView.swift in Sources */,
-				41ED6F7E2B597C57002A7F60 /* OrdersListViewModel.swift in Sources */,
 				41ED6F802B597C62002A7F60 /* OrdersListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -307,6 +295,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -370,6 +359,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";

@@ -8,40 +8,49 @@
 import SwiftUI
 
 struct OrdersListView: View {
+    @Environment(\.modelContext) private var context
+    
     @ObservedObject var dataService = DataService()
     
+    @State private var openedOrders = [Int]()
+    
     var body: some View {
-        VStack {
-            NavigationSplitView {
-                ordersList
-                    .navigationTitle("OrdersListView.Orders.Title".localized)
-                    .toolbar {
-                        ToolbarItem(placement: .topBarTrailing) {
-                            Button("Log Out") {
-                                Auth.shared.logout()
-                            }
+        NavigationSplitView {
+            ordersList
+                .navigationTitle("OrdersListView.Orders.Title".localized)
+                .toolbar {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button("OrdersListView.LogoutButton.Title".localized) {
+                            Auth.shared.logout()
                         }
                     }
-                    
-            }
-            detail: {
-                Text("Select an order")
-            }
-            .padding()
+                }
         }
+        detail: {
+            Text("Select an order")
+        }
+        .padding()
     }
     
     var ordersList: some View {
         List(dataService.fetchedOrders) { order in
             NavigationLink {
-                OrderDetailsView(order: order)
+                OrderDetailsView()
                     .navigationTitle("\(order.name) \(order.id)")
                     .navigationBarTitleDisplayMode(.inline)
+                    .task {
+                        await dataService.updateLocalDatabase(modelContext: context, id: order.id)
+                        print("Order tapped")
+                        if !openedOrders.contains(order.id) {
+                            openedOrders.append(order.id)
+                        }
+                    }
             } label: {
-                OrderView(order)
+                OrderView(order, openedOrders)
                     .padding(1)
             }
         }
+        .listStyle(.plain)
         .onAppear {
             dataService.fetchOrders()
         }
@@ -52,11 +61,12 @@ struct OrdersListView: View {
 }
                         
 struct OrderView: View {
-    @ObservedObject var state = OrderState.shared
+    var opened: [Int]
     let order: Order
     
-    init(_ order: Order) {
+    init(_ order: Order, _ state: [Int]) {
         self.order = order
+        self.opened = state
     }
     
     var body: some View {
@@ -65,12 +75,11 @@ struct OrderView: View {
             Text(order.name)
         }
         .font(.system(size: 15))
-        .foregroundStyle(state.openedOrders.contains(order.id) ? .gray : .primaryColor)
-        .fontWeight(state.openedOrders.contains(order.id) ? .light : .bold)
+        .foregroundStyle(opened.contains(order.id) ? .gray : .primaryColor)
+        .bold(!opened.contains(order.id))
     }
 }
 
 #Preview {
     OrdersListView()
-        .modelContainer(for: [InventoryItem.self])
 }

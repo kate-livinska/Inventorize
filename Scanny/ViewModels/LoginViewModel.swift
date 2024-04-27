@@ -23,7 +23,6 @@ class LoginViewModel: ObservableObject {
                 )
                 Auth.shared.setToken(token: response.token)
                 print(response.token)
-                //DataService.shared.fetchOrders()
             } catch {
                 print("Error: API request failed. \(error.localizedDescription)")
             }

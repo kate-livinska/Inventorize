@@ -17,25 +17,6 @@ class InventoryItem {
     var box: String
     var inventoried: Bool
     
-//    init(id: Int, ean: Int, sku: String, quantity: Int, box: String, inventoried: Bool) {
-//        self.id = id
-//        self.ean = ean
-//        self.sku = sku
-//        self.quantity = quantity
-//        self.box = box
-//        self.inventoried = inventoried
-//    }
-//    
-//    convenience init(_ item: Item) {
-//        self.init(
-//            id: item.id,
-//            ean: item.ean,
-//            sku: item.sku,
-//            quantity: item.quantity,
-//            box: item.box,
-//            inventoried: item.inventoried)
-//    }
-    
     init(_ item: Item) {
         self.id = item.id
         self.ean = item.ean
@@ -44,4 +25,19 @@ class InventoryItem {
         self.box = item.box
         self.inventoried = item.inventoried
     }
+    
+    init(id: Int, ean: Int, sku: String, quantity: Int, box: String, inventoried: Bool) {
+        self.id = id
+        self.ean = ean
+        self.sku = sku
+        self.quantity = quantity
+        self.box = box
+        self.inventoried = inventoried
+    }
+    
+    static let sampleData = [
+        InventoryItem(id: 1, ean: 7589679780, sku: "GHJ32547346YUI", quantity: 123, box: "3", inventoried: false),
+        InventoryItem(id: 2, ean: 980378083, sku: "VBNM546788IO", quantity: 0, box: "79", inventoried: true),
+    InventoryItem(id: 3, ean: 890806786, sku: "VBN09788967655WE", quantity: 15, box: "8", inventoried: false),
+    InventoryItem(id: 4, ean: 98766544342, sku: "TYU67864434755RT", quantity: 0, box: "12", inventoried: false)]
 }
