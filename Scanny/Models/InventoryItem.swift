@@ -15,7 +15,7 @@ class InventoryItem {
     var sku: String
     var quantity: Int
     var box: String
-    var inventoried: Bool
+    var isInventoried: Bool
     
     init(_ item: Item) {
         self.id = item.id
@@ -23,21 +23,21 @@ class InventoryItem {
         self.sku = item.sku
         self.quantity = item.quantity
         self.box = item.box
-        self.inventoried = item.inventoried
+        self.isInventoried = item.inventoried
     }
     
-    init(id: Int, ean: Int, sku: String, quantity: Int, box: String, inventoried: Bool) {
+    init(id: Int, ean: Int, sku: String, quantity: Int, box: String, isInventoried: Bool) {
         self.id = id
         self.ean = ean
         self.sku = sku
         self.quantity = quantity
         self.box = box
-        self.inventoried = inventoried
+        self.isInventoried = isInventoried
     }
     
     static let sampleData = [
-        InventoryItem(id: 1, ean: 7589679780, sku: "GHJ32547346YUI", quantity: 123, box: "3", inventoried: false),
-        InventoryItem(id: 2, ean: 980378083, sku: "VBNM546788IO", quantity: 0, box: "79", inventoried: true),
-    InventoryItem(id: 3, ean: 890806786, sku: "VBN09788967655WE", quantity: 15, box: "8", inventoried: false),
-    InventoryItem(id: 4, ean: 98766544342, sku: "TYU67864434755RT", quantity: 0, box: "12", inventoried: false)]
+        InventoryItem(id: 1, ean: 7589679780, sku: "GHJ32547346YUI", quantity: 123, box: "3", isInventoried: false),
+        InventoryItem(id: 2, ean: 980378083, sku: "VBNM546788IO", quantity: 0, box: "79", isInventoried: true),
+    InventoryItem(id: 3, ean: 890806786, sku: "VBN09788967655WE", quantity: 15, box: "8", isInventoried: false),
+    InventoryItem(id: 4, ean: 98766544342, sku: "TYU67864434755RT", quantity: 0, box: "12", isInventoried: false)]
 }

@@ -12,7 +12,8 @@ struct ItemsInventoryView: View {
     //var items: [Item]
     //@ObservedObject var inventory = ItemsInventory()
     //@Environment(\.modelContext) private var context
-    @Query(sort: \InventoryItem.id) private var items: [InventoryItem]
+    @Query(sort: [SortDescriptor(\InventoryItem.isInventoried), SortDescriptor(\InventoryItem.id)])
+    private var items: [InventoryItem]
     
     var body: some View {
         List(items) {
@@ -31,10 +32,8 @@ struct ItemView: View {
     
     var body: some View {
         HStack {
-            if item.inventoried {
+            if item.isInventoried {
                 Image(systemName: "checkmark.circle")
-            } else {
-                Image(systemName: "circle")
             }
             VStack(alignment: .leading) {
                 Text("EAN: \(item.ean)")
@@ -47,7 +46,7 @@ struct ItemView: View {
                     .fontWeight(.bold)
             }
         }
-        .listRowBackground(item.inventoried ? Color.green : Color.clear)
+        .listRowBackground(item.isInventoried ? Color.green : Color.clear)
     }
 }
 
