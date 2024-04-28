@@ -39,10 +39,10 @@ struct OrdersListView: View {
                     .navigationTitle("\(order.name) \(order.id)")
                     .navigationBarTitleDisplayMode(.inline)
                     .task {
-                        await dataService.updateLocalDatabase(modelContext: context, id: order.id)
                         print("Order tapped")
                         if !openedOrders.contains(order.id) {
                             openedOrders.append(order.id)
+                            await dataService.updateLocalDatabase(modelContext: context, id: order.id)
                         }
                     }
             } label: {
