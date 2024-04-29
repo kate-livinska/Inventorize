@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		410159C62BA5A23F00F0949D /* ItemsInventoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410159C52BA5A23F00F0949D /* ItemsInventoryView.swift */; };
 		410159C82BBEB47E00F0949D /* InventoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410159C72BBEB47E00F0949D /* InventoryItem.swift */; };
 		411D518C2B4D3EF8008650EF /* ScannyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411D518B2B4D3EF8008650EF /* ScannyApp.swift */; };
 		411D518E2B4D3EF8008650EF /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411D518D2B4D3EF8008650EF /* RootView.swift */; };
@@ -35,7 +34,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		410159C52BA5A23F00F0949D /* ItemsInventoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsInventoryView.swift; sourceTree = "<group>"; };
 		410159C72BBEB47E00F0949D /* InventoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryItem.swift; sourceTree = "<group>"; };
 		411D51882B4D3EF8008650EF /* Scanny.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scanny.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		411D518B2B4D3EF8008650EF /* ScannyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannyApp.swift; sourceTree = "<group>"; };
@@ -163,7 +161,6 @@
 				41ED6F7F2B597C62002A7F60 /* OrdersListView.swift */,
 				41A6E02D2B7BFF7100D666D1 /* OrderDetailsView.swift */,
 				4193810D2B6287780004FC91 /* ScannerView.swift */,
-				410159C52BA5A23F00F0949D /* ItemsInventoryView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -268,7 +265,6 @@
 			files = (
 				41ED6F772B5527B2002A7F60 /* KeychainManager.swift in Sources */,
 				4138B4A02BDD876200DC742E /* SampleData.swift in Sources */,
-				410159C62BA5A23F00F0949D /* ItemsInventoryView.swift in Sources */,
 				411D51A12B4D4B2B008650EF /* StringExtensions.swift in Sources */,
 				411D51B72B51433E008650EF /* Constants.swift in Sources */,
 				4138B4A22BDE269100DC742E /* BoolExtension.swift in Sources */,

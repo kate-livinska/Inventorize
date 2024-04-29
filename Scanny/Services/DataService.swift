@@ -96,7 +96,7 @@ extension DataService {
         do {
             try modelContext.transaction {
                 for eachItem in items {
-                    let itemToStore = InventoryItem(eachItem)
+                    let itemToStore = InventoryItem(eachItem, orderId: id)
                     modelContext.insert(itemToStore)
                 }
             }

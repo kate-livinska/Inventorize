@@ -35,8 +35,8 @@ struct OrdersListView: View {
     var ordersList: some View {
         List(dataService.fetchedOrders) { order in
             NavigationLink {
-                OrderDetailsView()
-                    .navigationTitle("\(order.name) \(order.id)")
+                OrderDetailsView(orderId: order.id)
+                    .navigationTitle("\(order.name) \(String(order.id))")
                     .navigationBarTitleDisplayMode(.inline)
                     .task {
                         print("Order tapped")

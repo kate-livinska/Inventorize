@@ -46,5 +46,3 @@ class SampleData {
 }
 
 let sampleOrders = [Order(id: 1, name: "Order1"), Order(id: 2, name: "Order2"), Order(id: 3, name: "Order3")]
-
-let sampleOrderDetail = [Item(id: 1, ean: 12345, sku: "QWE12345", quantity: 5, box: "5", inventoried: false), Item(id: 2, ean: 234567, sku: "DFG567789GH", quantity: 100, box: "6", inventoried: true), Item(id: 3, ean: 678999090, sku: "VBN435766789GHJ", quantity: 0, box: "89", inventoried: false)]
