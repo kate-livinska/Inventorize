@@ -11,6 +11,9 @@
         }
       }
     },
+    "Box #" : {
+
+    },
     "Box: %@" : {
 
     },
@@ -21,6 +24,9 @@
 
     },
     "Email is not valid." : {
+
+    },
+    "Here goes box number and item quantity from DB for %@" : {
 
     },
     "Login.LoginButton.Title" : {
@@ -78,6 +84,17 @@
         }
       }
     },
+    "OK" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        }
+      }
+    },
     "OrdersListView.LogoutButton.Title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -111,16 +128,19 @@
         }
       }
     },
-    "Qty: %@" : {
+    "Qty" : {
 
     },
-    "Scanner will be here" : {
+    "Qty: %@" : {
 
     },
     "Select an order" : {
 
     },
     "SKU: %@" : {
+
+    },
+    "Test" : {
 
     }
   },

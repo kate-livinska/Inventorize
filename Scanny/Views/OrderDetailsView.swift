@@ -24,6 +24,7 @@ struct OrderDetailsView: View {
     var body: some View {
         VStack {
             ScannerView()
+            Divider()
             List(items) {
                 ItemView($0)
             }
