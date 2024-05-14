@@ -7,26 +7,31 @@
 
 import SwiftUI
 import CodeScanner
+import SwiftData
 
 struct ScannerView: View {
+    @Environment(\.modelContext) private var context
     @State private var isPresentinBoxViewPopover = false
     @State private var scannedCode: PopoverModel?
     
     var body: some View {
-        CodeScannerView(codeTypes: [.ean8, .ean13, .code128, .upce], simulatedData: "SomeEANvalue") { response in
+        CodeScannerView(codeTypes: [.ean8, .ean13, .code128, .upce], simulatedData: "item2_sku") { response in
             switch response {
             case .success(let result):
                 scannedCode = PopoverModel(code: result.string)
-                isPresentinBoxViewPopover = true
+                //isPresentinBoxViewPopover = true
             case .failure(let error):
-                print(error.localizedDescription)
+                print("Scanning failed: \(error.localizedDescription)")
             }
         }
-        .popover(item: $scannedCode, content: { code in
-            BoxView(scannedCode: code.code)
-                .frame(width:300, height: 250)
-                .presentationCompactAdaptation(.none)
-        })
+        .sheet(item: $scannedCode, onDismiss: didDismiss) { detail in
+            BoxView(scannedCode: detail.code)
+        }
+        .interactiveDismissDisabled() //Prevent people from dragging the sheet down to dismiss it.
+    }
+    
+    func didDismiss() {
+        
     }
 }
 

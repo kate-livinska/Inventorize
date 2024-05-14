@@ -11,7 +11,7 @@
         }
       }
     },
-    "Box #" : {
+    "Box #%@" : {
 
     },
     "Box: %@" : {
@@ -24,9 +24,6 @@
 
     },
     "Email is not valid." : {
-
-    },
-    "Here goes box number and item quantity from DB for %@" : {
 
     },
     "Login.LoginButton.Title" : {
@@ -128,19 +125,22 @@
         }
       }
     },
-    "Qty" : {
+    "Qty: %@" : {
 
     },
-    "Qty: %@" : {
+    "Qty: %lld" : {
 
     },
     "Select an order" : {
 
     },
-    "SKU: %@" : {
+    "Show QuantityEditorView here" : {
 
     },
-    "Test" : {
+    "Show SearchBySKUView here" : {
+
+    },
+    "SKU: %@" : {
 
     }
   },
