@@ -33,7 +33,7 @@
 		41B6B1E12BF3F6DA00B45515 /* InventoryOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B6B1E02BF3F6DA00B45515 /* InventoryOrder.swift */; };
 		41ED6F772B5527B2002A7F60 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41ED6F762B5527B2002A7F60 /* KeychainManager.swift */; };
 		41ED6F7C2B592EA3002A7F60 /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41ED6F7B2B592EA3002A7F60 /* Auth.swift */; };
-		41ED6F802B597C62002A7F60 /* OrdersListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41ED6F7F2B597C62002A7F60 /* OrdersListView.swift */; };
+		41ED6F802B597C62002A7F60 /* OrdersList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41ED6F7F2B597C62002A7F60 /* OrdersList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,7 +63,7 @@
 		41B6B1E02BF3F6DA00B45515 /* InventoryOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryOrder.swift; sourceTree = "<group>"; };
 		41ED6F762B5527B2002A7F60 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		41ED6F7B2B592EA3002A7F60 /* Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
-		41ED6F7F2B597C62002A7F60 /* OrdersListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersListView.swift; sourceTree = "<group>"; };
+		41ED6F7F2B597C62002A7F60 /* OrdersList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,9 +98,9 @@
 			isa = PBXGroup;
 			children = (
 				41ED6F7A2B592E83002A7F60 /* Services */,
+				411D51A32B4D5461008650EF /* Views */,
 				411D51A22B4D5453008650EF /* Models */,
 				411D51A42B4D5468008650EF /* ViewModels */,
-				411D51A32B4D5461008650EF /* Views */,
 				411D519F2B4D4AFA008650EF /* Utilities */,
 				411D519B2B4D4303008650EF /* SupportingFiles */,
 				411D518B2B4D3EF8008650EF /* ScannyApp.swift */,
@@ -165,7 +165,7 @@
 				41A6E0272B6CD21900D666D1 /* ContentView.swift */,
 				411D518D2B4D3EF8008650EF /* RootView.swift */,
 				411D51992B4D4164008650EF /* LoginView.swift */,
-				41ED6F7F2B597C62002A7F60 /* OrdersListView.swift */,
+				41ED6F7F2B597C62002A7F60 /* OrdersList.swift */,
 				41A6E02D2B7BFF7100D666D1 /* OrderDetailsView.swift */,
 				4193810D2B6287780004FC91 /* ScannerView.swift */,
 				41B6B1D42BE8DA9000B45515 /* BoxView.swift */,
@@ -299,7 +299,7 @@
 				411D51A72B4D56A5008650EF /* LoginViewModel.swift in Sources */,
 				411D518C2B4D3EF8008650EF /* ScannyApp.swift in Sources */,
 				41A6E0282B6CD21900D666D1 /* ContentView.swift in Sources */,
-				41ED6F802B597C62002A7F60 /* OrdersListView.swift in Sources */,
+				41ED6F802B597C62002A7F60 /* OrdersList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

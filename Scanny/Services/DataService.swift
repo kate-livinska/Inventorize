@@ -8,13 +8,8 @@
 import Foundation
 import SwiftData
 
-@MainActor
-class DataService: NetworkBase, ObservableObject {
-    static let shared = DataService()
-    @Published var fetchedOrders = [Order]()
-    @Published var fetchedItems = [Item]()
-    @Published var isLoading = true
-
+class DataService: NetworkBase {
+   
     enum Endpoint: EndpointProtocol {
         case orders
         //case items
@@ -54,22 +49,20 @@ class DataService: NetworkBase, ObservableObject {
         }
     }
     
-    func fetchOrders() {
-        Task {
-            do {
-                let orders = try await self.fetch(
-                    OrderResults.self,
-                    endpoint: .orders,
-                    request: .orders
-                )
-                self.fetchedOrders = orders.results
-            } catch {
-                print("Error: Data request failed. \(error.localizedDescription)")
-            }
+    static func fetchOrders() async throws -> [Order] {
+        do {
+            let orders = try await self.fetch(
+                OrderResults.self,
+                endpoint: .orders,
+                request: .orders
+            )
+            return orders.results
+        } catch {
+            print("Error: Data request failed. \(error.localizedDescription)")
         }
     }
     
-    func fetchItems(id: Int) async -> [Item]? {
+    static func fetchItems(id: Int) async -> [Item]? {
         let directoryStr = "/\(String(id))"
         do {
             let orderDetails = try await self.fetch(
@@ -78,7 +71,6 @@ class DataService: NetworkBase, ObservableObject {
                 directory: directoryStr,
                 request: .orders
             )
-            self.isLoading = false
             return orderDetails.results
             
         } catch {
@@ -89,8 +81,24 @@ class DataService: NetworkBase, ObservableObject {
 }
 
 //MARK: - Transfer data to local Database
+
 extension DataService {
-    func updateLocalDatabase(modelContext: ModelContext, id: Int) async {
+    @MainActor
+    static func refreshOrders(modelContext: ModelContext) async {
+        do {
+            let orders = try await fetchOrders()
+            
+            for order in orders {
+                let inventoryOrder = InventoryOrder(from: order)
+                modelContext.insert(inventoryOrder)
+            }
+        } catch let error {
+            print("Error: refreshing orders failed. \(error.localizedDescription)")
+        }
+    }
+    
+    @MainActor
+    static func updateLocalDatabase(modelContext: ModelContext, id: Int) async {
         
         guard let items = await fetchItems(id: id) else { return }
         do {

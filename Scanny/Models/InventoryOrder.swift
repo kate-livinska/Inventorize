@@ -13,6 +13,7 @@ final class InventoryOrder {
     @Attribute(.unique) var id: Int
     var name: String
     var orderItems = [InventoryItem]()
+    var wasOpened = false
     
     init(id: Int, name: String) {
         self.id = id

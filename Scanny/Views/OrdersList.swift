@@ -6,12 +6,13 @@
 //
 
 import SwiftUI
+import SwiftData
 
-struct OrdersListView: View {
+struct OrdersList: View {
     @Environment(\.modelContext) private var context
+    @Query private var orders: [InventoryOrder]
     
-    @ObservedObject var dataService = DataService()
-    
+    //FIXME: - DB as source of truth for opened orders
     @State private var openedOrders = [Int]()
     
     var body: some View {
@@ -30,43 +31,42 @@ struct OrdersListView: View {
             Text("Select an order")
         }
         .padding()
+        .refreshable {
+            await DataService.refreshOrders(modelContext: context)
+        }
+        .overlay {
+            if orders.isEmpty {
+                ContentUnavailableView("Refrresh to load orders", systemImage: "globe")
+            }
+        }
     }
     
     var ordersList: some View {
-        List(dataService.fetchedOrders) { order in
+        List(orders) { order in
             NavigationLink {
-                OrderDetailsView(orderId: order.id)
+                OrderDetailsView(order: order)
                     .navigationTitle("\(order.name) \(String(order.id))")
                     .navigationBarTitleDisplayMode(.inline)
                     .task {
                         print("Order tapped")
-                        if !openedOrders.contains(order.id) {
-                            openedOrders.append(order.id)
-                            await dataService.updateLocalDatabase(modelContext: context, id: order.id)
+                        if !order.wasOpened {
+                            order.wasOpened.toggle()
                         }
                     }
             } label: {
-                OrderView(order, openedOrders)
+                OrderView(order)
                     .padding(1)
             }
         }
         .listStyle(.plain)
-        .onAppear {
-            dataService.fetchOrders()
-        }
-        .refreshable {
-            dataService.fetchOrders()
-        }
     }
 }
                         
 struct OrderView: View {
-    var opened: [Int]
-    let order: Order
+    let order: InventoryOrder
     
-    init(_ order: Order, _ state: [Int]) {
+    init(_ order: InventoryOrder) {
         self.order = order
-        self.opened = state
     }
     
     var body: some View {
@@ -75,11 +75,11 @@ struct OrderView: View {
             Text(order.name)
         }
         .font(.system(size: 15))
-        .foregroundStyle(opened.contains(order.id) ? .gray : .primaryColor)
-        .bold(!opened.contains(order.id))
+        .foregroundStyle(order.wasOpened ? .gray : .primaryColor)
+        .bold(!order.wasOpened)
     }
 }
 
 #Preview {
-    OrdersListView()
+    OrdersList()
 }

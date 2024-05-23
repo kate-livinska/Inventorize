@@ -13,7 +13,7 @@ struct OrderDetailsView: View {
     
     @Query private var items: [InventoryItem]
     
-    init(orderId: Int) {
+    init(order: InventoryOrder) {
         let predicate = #Predicate<InventoryItem> { item in
             item.order.id == orderId
         }

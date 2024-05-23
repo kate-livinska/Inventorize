@@ -32,7 +32,7 @@ extension NetworkBase {
 
     static var host: String { K.Networking.host }
     
-    func post<Result: Codable>(
+    static func post<Result: Codable>(
         _ type: Result.Type,
         body: Codable,
         endpoint: Endpoint,
@@ -47,7 +47,7 @@ extension NetworkBase {
         return result
     }
     
-    func fetch<Result: Codable>(
+    static func fetch<Result: Codable>(
         _ type: Result.Type,
         endpoint: Endpoint,
         directory: String = "",
@@ -60,7 +60,7 @@ extension NetworkBase {
         return result
     }
     
-    func url(for endpoint: Endpoint, directory: String = "") throws -> URL {
+    static func url(for endpoint: Endpoint, directory: String = "") throws -> URL {
         let urlString = "\(Self.host)/\(endpoint.path)\(directory)"
         print(urlString)
         guard let url = URL(string: urlString) else {
@@ -69,7 +69,7 @@ extension NetworkBase {
         return url
     }
     //FIXME: - value header in post request for login not needed
-    func urlRequest(with url: URL, _ request: Request) -> URLRequest {
+    static func urlRequest(with url: URL, _ request: Request) -> URLRequest {
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = request.method
         urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -79,7 +79,7 @@ extension NetworkBase {
         return urlRequest
     }
     
-    func getData<Result: Codable>(_ urlRequest: URLRequest) async throws -> Result {
+    static func getData<Result: Codable>(_ urlRequest: URLRequest) async throws -> Result {
         let (data, response) = try await URLSession.shared.data(for: urlRequest)
         let str = String(decoding: data, as: UTF8.self)
         print(str)
