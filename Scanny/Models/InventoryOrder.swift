@@ -11,13 +11,15 @@ import SwiftData
 @Model
 final class InventoryOrder {
     @Attribute(.unique) var id: Int
+    var name: String
     var orderItems = [InventoryItem]()
     
     init(id: Int, name: String) {
         self.id = id
+        self.name = name
     }
     
-    init(_ order: Order) {
-        self.id = order.id
+    convenience init(from order: Order) {
+        self.init(id: order.id, name: order.name)
     }
 }

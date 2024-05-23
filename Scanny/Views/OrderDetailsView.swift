@@ -15,7 +15,7 @@ struct OrderDetailsView: View {
     
     init(orderId: Int) {
         let predicate = #Predicate<InventoryItem> { item in
-            item.orderId == orderId
+            item.order.id == orderId
         }
         
         _items = Query(filter: predicate, sort: [SortDescriptor(\InventoryItem.isInventoried), SortDescriptor(\InventoryItem.id)])

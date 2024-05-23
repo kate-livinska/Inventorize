@@ -10,9 +10,12 @@ import CodeScanner
 import SwiftData
 
 struct ScannerView: View {
-    @Environment(\.modelContext) private var context
+    //@Environment(\.modelContext) private var context
     @State private var isPresentinBoxViewPopover = false
     @State private var scannedCode: PopoverModel?
+    
+    @State private var isItemFound = false
+    @State private var isQuantityIndicated = true
     
     var body: some View {
         CodeScannerView(codeTypes: [.ean8, .ean13, .code128, .upce], simulatedData: "item2_sku") { response in
@@ -24,14 +27,10 @@ struct ScannerView: View {
                 print("Scanning failed: \(error.localizedDescription)")
             }
         }
-        .sheet(item: $scannedCode, onDismiss: didDismiss) { detail in
+        .sheet(item: $scannedCode) { detail in
             BoxView(scannedCode: detail.code)
         }
         .interactiveDismissDisabled() //Prevent people from dragging the sheet down to dismiss it.
-    }
-    
-    func didDismiss() {
-        
     }
 }
 

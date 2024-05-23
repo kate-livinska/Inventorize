@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct BoxView: View {
-    @Environment(\.modelContext) private var context
+    //@Environment(\.modelContext) private var context
     @Environment(\.dismiss) private var dismiss
     
     @Query private var item: [InventoryItem]
