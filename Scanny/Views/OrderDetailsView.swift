@@ -15,7 +15,7 @@ struct OrderDetailsView: View {
     
     init(order: InventoryOrder) {
         let predicate = #Predicate<InventoryItem> { item in
-            item.order.id == orderId
+            item.order.id == order.id
         }
         
         _items = Query(filter: predicate, sort: [SortDescriptor(\InventoryItem.isInventoried), SortDescriptor(\InventoryItem.id)])
@@ -70,6 +70,6 @@ struct ItemView: View {
 }
 
 #Preview {
-    OrderDetailsView(orderId: 0)
+    OrderDetailsView(order: )
         .modelContainer(SampleData.shared.modelContainer)
 }

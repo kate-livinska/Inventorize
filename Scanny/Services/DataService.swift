@@ -59,6 +59,7 @@ class DataService: NetworkBase {
             return orders.results
         } catch {
             print("Error: Data request failed. \(error.localizedDescription)")
+            throw error
         }
     }
     
@@ -98,18 +99,18 @@ extension DataService {
     }
     
     @MainActor
-    static func updateLocalDatabase(modelContext: ModelContext, id: Int) async {
+    static func saveItems(modelContext: ModelContext, order: InventoryOrder) async {
         
-        guard let items = await fetchItems(id: id) else { return }
+        guard let items = await fetchItems(id: order.id) else { return }
         do {
             try modelContext.transaction {
                 for eachItem in items {
-                    let itemToStore = InventoryItem(eachItem, orderId: id)
-                    modelContext.insert(itemToStore)
+                    let itemToPersist = InventoryItem(from: eachItem, order: order)
+                    modelContext.insert(itemToPersist)
                 }
             }
-        } catch {
-            print("Error saving data to database")
+        } catch let error {
+            print("Error saving data to database. \(error.localizedDescription)")
         }
     }
 }
