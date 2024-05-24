@@ -12,10 +12,9 @@ class LoginViewModel: ObservableObject {
     @Published var password = "password"
     
     func login() {
-        let loginService = LoginService()
         Task {
             do {
-                let response = try await loginService.post(
+                let response = try await LoginService.post(
                     LoginResponse.self,
                     body: LoginRequest(username: username, password: password),
                     endpoint: .login,
