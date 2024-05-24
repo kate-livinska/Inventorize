@@ -37,6 +37,10 @@ class SampleData {
         for item in InventoryItem.sampleData {
             context.insert(item)
         }
+        
+        for order in InventoryOrder.sampleOrders {
+            context.insert(order)
+        }
         do {
             try context.save()
         } catch {
@@ -44,5 +48,3 @@ class SampleData {
         }
     }
 }
-
-let sampleOrders = [Order(id: 1, name: "Order1"), Order(id: 2, name: "Order2"), Order(id: 3, name: "Order3")]

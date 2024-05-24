@@ -23,4 +23,10 @@ final class InventoryOrder {
     convenience init(from order: Order) {
         self.init(id: order.id, name: order.name)
     }
+    
+    static let sampleOrders = [
+        InventoryOrder(id: 1, name: "Order1"),
+        InventoryOrder(id: 2, name: "Order2"),
+        InventoryOrder(id: 3, name: "Order3")
+    ]
 }
