@@ -9,23 +9,28 @@ import SwiftUI
 import SwiftData
 
 struct OrderDetailsView: View {
+    var order: InventoryOrder
     @Environment(\.modelContext) private var context
     
-    @Query private var items: [InventoryItem]
+    var unsortedItems: [InventoryItem] {
+        order.orderItems.sorted {first, second in
+            first.isInventoried < second.isInventoried && first.id < second.id
+        }
+    }
     
     init(order: InventoryOrder) {
-        let predicate = #Predicate<InventoryItem> { item in
-            item.order == order
-        }
+        self.order = order
         
-        _items = Query(filter: predicate, sort: [SortDescriptor(\InventoryItem.isInventoried), SortDescriptor(\InventoryItem.id)])
     }
     
     var body: some View {
         VStack {
             ScannerView()
             Divider()
-            List(items) {
+            if unsortedItems.count == 0 {
+                Text("No items - \(order.orderItems.count)")
+            }
+            List(unsortedItems) {
                 ItemView($0)
             }
             .listStyle(.plain)
@@ -70,6 +75,8 @@ struct ItemView: View {
 }
 
 #Preview {
-    OrderDetailsView(order: InventoryOrder.sampleOrders[0])
-        .modelContainer(SampleData.shared.modelContainer)
+    NavigationStack {
+        OrderDetailsView(order: SampleData.shared.order)
+            .modelContainer(SampleData.shared.modelContainer)
+    }
 }

@@ -22,4 +22,5 @@ struct RootView: View {
 #Preview {
     RootView()
         .environmentObject(Auth.shared)
+        .modelContainer(SampleData.shared.modelContainer)
 }

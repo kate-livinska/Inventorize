@@ -10,22 +10,31 @@ import SwiftData
 
 struct OrdersList: View {
     @Environment(\.modelContext) private var context
-    @Query private var orders: [InventoryOrder]
-    
-    //FIXME: - DB as source of truth for opened orders
-    @State private var openedOrders = [Int]()
+    @Query(sort: \InventoryOrder.id) private var orders: [InventoryOrder]
     
     var body: some View {
         NavigationSplitView {
-            ordersList
-                .navigationTitle("OrdersListView.Orders.Title".localized)
-                .toolbar {
-                    ToolbarItem(placement: .topBarTrailing) {
-                        Button("OrdersListView.LogoutButton.Title".localized) {
-                            Auth.shared.logout()
+            VStack {
+                ordersList
+                    .navigationTitle("OrdersListView.Orders.Title".localized)
+                    .toolbar {
+                        ToolbarItem(placement: .topBarTrailing) {
+                            Button("OrdersListView.LogoutButton.Title".localized) {
+                                Auth.shared.logout()
+                            }
                         }
                     }
-                }
+                Button(action: {
+                    do {
+                        try context.delete(model: InventoryOrder.self)
+                        try context.delete(model: InventoryItem.self)
+                    } catch {
+                        print("Failed to delete.")
+                    }
+                }, label: {
+                    Text("Delete Data")
+                })
+            }
         }
         detail: {
             Text("Select an order")
@@ -36,7 +45,7 @@ struct OrdersList: View {
         }
         .overlay {
             if orders.isEmpty {
-                ContentUnavailableView("Refrresh to load orders", systemImage: "globe")
+                ContentUnavailableView("Refresh to load orders", systemImage: "globe")
             }
         }
     }
@@ -49,9 +58,14 @@ struct OrdersList: View {
                     .navigationBarTitleDisplayMode(.inline)
                     .task {
                         print("Order tapped")
-                        if !order.wasOpened {
-                            order.wasOpened.toggle()
+                        order.wasOpened = true
+                        context.insert(order)
+                        do {
+                            try context.save()
+                        } catch {
+                            print("Sample data context failed to save.")
                         }
+                        await DataService.saveItems(modelContext: context, order: order)
                     }
             } label: {
                 OrderView(order)
@@ -81,5 +95,8 @@ struct OrderView: View {
 }
 
 #Preview {
-    OrdersList()
+    NavigationStack {
+        OrdersList()
+            .modelContainer(SampleData.shared.modelContainer)
+    }
 }

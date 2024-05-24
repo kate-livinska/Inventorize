@@ -67,6 +67,7 @@ def get_orders():
     # In a real-world application, you would use a proper authentication mechanism
 
     orders = Order.query.all()
+    print(orders)
     return jsonify({"results": [{"id": order.id, "name": order.name} for order in orders]})
 
 @app.route('/orders/<order_id>', methods=['GET'])
