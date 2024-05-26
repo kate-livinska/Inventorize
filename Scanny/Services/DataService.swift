@@ -106,6 +106,7 @@ extension DataService {
             try modelContext.transaction {
                 for eachItem in items {
                     let itemToPersist = InventoryItem(from: eachItem, order: order)
+                    order.orderItems.append(itemToPersist)
                     modelContext.insert(itemToPersist)
                 }
             }

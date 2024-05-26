@@ -14,7 +14,9 @@ struct OrderDetailsView: View {
     
     var unsortedItems: [InventoryItem] {
         order.orderItems.sorted {first, second in
-            first.isInventoried < second.isInventoried && first.id < second.id
+            //first.isInventoried < second.isInventoried &&
+            first.id < second.id &&
+            first.isInventoried < second.isInventoried
         }
     }
     
@@ -44,8 +46,11 @@ struct OrderDetailsView: View {
                 Text("Delete Data")
             })
         }
+        //make the items list not refreshable
+        .environment(\EnvironmentValues.refresh as! WritableKeyPath<EnvironmentValues, RefreshAction?>, nil)
     }
 }
+
 
 struct ItemView: View {
     let item: InventoryItem
@@ -60,7 +65,7 @@ struct ItemView: View {
                 Image(systemName: "checkmark.circle")
             }
             VStack(alignment: .leading) {
-                Text("EAN: \(String(item.ean))")
+                Text("\(String(item.id)) EAN: \(String(item.ean))")
                 Text("SKU: \(String(item.sku))")
             }
             Spacer()

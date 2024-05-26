@@ -57,15 +57,17 @@ struct OrdersList: View {
                     .navigationTitle("\(order.name) \(String(order.id))")
                     .navigationBarTitleDisplayMode(.inline)
                     .task {
-                        print("Order tapped")
-                        order.wasOpened = true
-                        context.insert(order)
-                        do {
-                            try context.save()
-                        } catch {
-                            print("Sample data context failed to save.")
+                        if !order.wasOpened {
+                            print("Order tapped")
+                            order.wasOpened = true
+                            context.insert(order)
+                            do {
+                                try context.save()
+                            } catch {
+                                print("Sample data context failed to save.")
+                            }
+                            await DataService.saveItems(modelContext: context, order: order)
                         }
-                        await DataService.saveItems(modelContext: context, order: order)
                     }
             } label: {
                 OrderView(order)
