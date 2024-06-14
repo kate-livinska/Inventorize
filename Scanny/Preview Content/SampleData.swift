@@ -20,7 +20,8 @@ class SampleData {
     
     private init() {
         let schema = Schema([
-                    InventoryItem.self,
+            InventoryItem.self,
+            InventoryOrder.self
                 ])
                 let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: true)
                 
@@ -34,15 +35,28 @@ class SampleData {
     }
     
     func insertSampleData() {
+        for order in InventoryOrder.sampleOrders {
+            context.insert(order)
+        }
+        
         for item in InventoryItem.sampleData {
             context.insert(item)
         }
+        
+        InventoryOrder.sampleOrders[0].orderItems.append(InventoryItem.sampleData[0])
+        InventoryOrder.sampleOrders[0].orderItems.append(InventoryItem.sampleData[1])
+        InventoryOrder.sampleOrders[0].orderItems.append(InventoryItem.sampleData[2])
+        InventoryOrder.sampleOrders[1].orderItems.append(InventoryItem.sampleData[3])
+        InventoryOrder.sampleOrders[2].orderItems.append(InventoryItem.sampleData[4])
+        
         do {
             try context.save()
         } catch {
             print("Sample data context failed to save.")
         }
     }
+    
+    var order: InventoryOrder {
+        InventoryOrder.sampleOrders[0]
+    }
 }
-
-let sampleOrders = [Order(id: 1, name: "Order1"), Order(id: 2, name: "Order2"), Order(id: 3, name: "Order3")]

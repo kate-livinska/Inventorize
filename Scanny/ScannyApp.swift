@@ -15,6 +15,6 @@ struct ScannyApp: App {
         WindowGroup {
             ContentView()
         }
-        .modelContainer(for: [InventoryItem.self])
+        .modelContainer(for: [InventoryItem.self, InventoryOrder.self])
     }
 }

@@ -11,9 +11,11 @@ struct ContentView: View {
     var body: some View {
         RootView()
             .environmentObject(Auth.shared)
+            .modelContainer(SampleData.shared.modelContainer)
     }
 }
 
 #Preview {
     ContentView()
+        .modelContainer(SampleData.shared.modelContainer)
 }

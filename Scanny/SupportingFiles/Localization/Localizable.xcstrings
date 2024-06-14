@@ -11,6 +11,16 @@
         }
       }
     },
+    "%@ EAN: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ EAN: %2$@"
+          }
+        }
+      }
+    },
     "Box #%@" : {
 
     },
@@ -18,9 +28,6 @@
 
     },
     "Delete Data" : {
-
-    },
-    "EAN: %@" : {
 
     },
     "Email is not valid." : {
@@ -81,6 +88,9 @@
         }
       }
     },
+    "No items - %lld" : {
+
+    },
     "OK" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -129,6 +139,9 @@
 
     },
     "Qty: %lld" : {
+
+    },
+    "Refresh to load orders" : {
 
     },
     "Select an order" : {

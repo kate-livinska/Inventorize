@@ -12,7 +12,7 @@ struct RootView: View {
     
     var body: some View {
         if auth.loggedIn {
-            OrdersListView()
+            OrdersList()
         } else {
             LoginView()
         }
@@ -22,4 +22,5 @@ struct RootView: View {
 #Preview {
     RootView()
         .environmentObject(Auth.shared)
+        .modelContainer(SampleData.shared.modelContainer)
 }

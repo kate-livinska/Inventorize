@@ -9,23 +9,30 @@ import SwiftUI
 import SwiftData
 
 struct OrderDetailsView: View {
+    var order: InventoryOrder
     @Environment(\.modelContext) private var context
     
-    @Query private var items: [InventoryItem]
-    
-    init(orderId: Int) {
-        let predicate = #Predicate<InventoryItem> { item in
-            item.order.id == orderId
+    var unsortedItems: [InventoryItem] {
+        order.orderItems.sorted {first, second in
+            //first.isInventoried < second.isInventoried &&
+            first.id < second.id &&
+            first.isInventoried < second.isInventoried
         }
+    }
+    
+    init(order: InventoryOrder) {
+        self.order = order
         
-        _items = Query(filter: predicate, sort: [SortDescriptor(\InventoryItem.isInventoried), SortDescriptor(\InventoryItem.id)])
     }
     
     var body: some View {
         VStack {
             ScannerView()
             Divider()
-            List(items) {
+            if unsortedItems.count == 0 {
+                Text("No items - \(order.orderItems.count)")
+            }
+            List(unsortedItems) {
                 ItemView($0)
             }
             .listStyle(.plain)
@@ -39,8 +46,24 @@ struct OrderDetailsView: View {
                 Text("Delete Data")
             })
         }
+        //make the items list not refreshable
+        .environment(\EnvironmentValues.refresh as! WritableKeyPath<EnvironmentValues, RefreshAction?>, nil)
+        .task {
+            if !order.wasOpened {
+                print("Order tapped")
+                order.wasOpened = true
+                context.insert(order)
+                do {
+                    try context.save()
+                } catch {
+                    print("Sample data context failed to save.")
+                }
+                await DataService.saveItems(modelContext: context, order: order)
+            }
+        }
     }
 }
+
 
 struct ItemView: View {
     let item: InventoryItem
@@ -55,7 +78,7 @@ struct ItemView: View {
                 Image(systemName: "checkmark.circle")
             }
             VStack(alignment: .leading) {
-                Text("EAN: \(String(item.ean))")
+                Text("\(String(item.id)) EAN: \(String(item.ean))")
                 Text("SKU: \(String(item.sku))")
             }
             Spacer()
@@ -70,6 +93,8 @@ struct ItemView: View {
 }
 
 #Preview {
-    OrderDetailsView(orderId: 0)
-        .modelContainer(SampleData.shared.modelContainer)
+    NavigationStack {
+        OrderDetailsView(order: SampleData.shared.order)
+            .modelContainer(SampleData.shared.modelContainer)
+    }
 }
