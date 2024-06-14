@@ -15,7 +15,6 @@ struct OrderDetailsView: View {
     var unsortedItems: [InventoryItem] {
         order.orderItems.sorted {first, second in
             //first.isInventoried < second.isInventoried &&
-            first.id < second.id &&
             first.isInventoried < second.isInventoried
         }
     }
@@ -52,12 +51,6 @@ struct OrderDetailsView: View {
             if !order.wasOpened {
                 print("Order tapped")
                 order.wasOpened = true
-                context.insert(order)
-                do {
-                    try context.save()
-                } catch {
-                    print("Sample data context failed to save.")
-                }
                 await DataService.saveItems(modelContext: context, order: order)
             }
         }
