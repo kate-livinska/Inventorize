@@ -12,7 +12,7 @@ struct OrderDetailsView: View {
     var order: InventoryOrder
     @Environment(\.modelContext) private var context
     
-    var unsortedItems: [InventoryItem] {
+    var sortedItems: [InventoryItem] {
         order.orderItems.sorted { first, second in
             (first.isInventoried, first.id) < (second.isInventoried, second.id)
         }
@@ -20,17 +20,16 @@ struct OrderDetailsView: View {
     
     init(order: InventoryOrder) {
         self.order = order
-        
     }
     
     var body: some View {
         VStack {
             ScannerView()
             Divider()
-            if unsortedItems.count == 0 {
-                Text("No items - \(order.orderItems.count)")
+            if sortedItems.count == 0 {
+                Text("No items")
             }
-            List(unsortedItems) {
+            List(sortedItems) {
                 ItemView($0)
             }
             .listStyle(.plain)
