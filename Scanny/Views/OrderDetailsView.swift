@@ -13,9 +13,8 @@ struct OrderDetailsView: View {
     @Environment(\.modelContext) private var context
     
     var unsortedItems: [InventoryItem] {
-        order.orderItems.sorted {first, second in
-            //first.isInventoried < second.isInventoried &&
-            first.isInventoried < second.isInventoried
+        order.orderItems.sorted { first, second in
+            (first.isInventoried, first.id) < (second.isInventoried, second.id)
         }
     }
     
