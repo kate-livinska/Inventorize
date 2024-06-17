@@ -18,7 +18,7 @@ struct ScanResults: View {
     init(orderID: Int, searchText: String) {
         self.selectedOrderID = orderID
         let predicate = #Predicate<InventoryItem> {
-            $0.ean.contains(searchText)
+            $0.eanAsString.contains(searchText)
             &&
             $0.order.id == selectedOrderID
         }
@@ -39,6 +39,6 @@ struct ScanResults: View {
 }
 
 #Preview {
-    ScanResults(orderID: 1, searchText: "VBN")
+    ScanResults(orderID: 1, searchText: "7589679780")
         .modelContainer(SampleData.shared.modelContainer)
 }

@@ -11,20 +11,17 @@ import SwiftData
 @Model
 final class InventoryItem {
     @Attribute(.unique) var id: Int
-    @Attribute var ean: String
+    @Attribute var ean: Int
+    @Attribute var eanAsString: String
     @Attribute var sku: String
     @Attribute var quantity: Int
     @Attribute var box: String
     @Attribute var order: InventoryOrder
     @Attribute var isInventoried: Bool
     
-    var eanAsString: String {
-        String(ean)
-    }
-    
     init(
         id: Int,
-        ean: String,
+        ean: Int,
         sku: String,
         quantity: Int,
         box: String,
@@ -33,6 +30,7 @@ final class InventoryItem {
     ) {
         self.id = id
         self.ean = ean
+        self.eanAsString = String(ean)
         self.sku = sku
         self.quantity = quantity
         self.box = box
@@ -43,7 +41,7 @@ final class InventoryItem {
     convenience init(from item: Item, order: InventoryOrder) {
         self.init(
             id: item.id,
-            ean: String(item.ean),
+            ean: item.ean,
             sku: item.sku,
             quantity: item.quantity,
             box: item.box,
@@ -52,9 +50,9 @@ final class InventoryItem {
     }
     
     static let sampleData = [
-        InventoryItem(id: 0, ean: "7589679780", sku: "GHJ32547346YUI", quantity: 123, box: "3", order: InventoryOrder.sampleOrders[0], isInventoried: false),
-        InventoryItem(id: 2, ean: "980378083", sku: "VBNM546788IO", quantity: 0, box: "79", order: InventoryOrder.sampleOrders[0], isInventoried: true),
-        InventoryItem(id: 22, ean: "908969867575", sku: "VBNM5467238IO", quantity: 1, box: "79", order: InventoryOrder.sampleOrders[0], isInventoried: true),
-        InventoryItem(id: 3, ean: "890806786", sku: "VBN09788967655WE", quantity: 15, box: "8", order: InventoryOrder.sampleOrders[1], isInventoried: false),
-        InventoryItem(id: 4, ean: "98766544342", sku: "TYU67864434755RT", quantity: 0, box: "12", order: InventoryOrder.sampleOrders[2], isInventoried: false)]
+        InventoryItem(id: 0, ean: 7589679780, sku: "GHJ32547346YUI", quantity: 123, box: "3", order: InventoryOrder.sampleOrders[0], isInventoried: false),
+        InventoryItem(id: 2, ean: 980378083, sku: "VBNM546788IO", quantity: 0, box: "79", order: InventoryOrder.sampleOrders[0], isInventoried: true),
+        InventoryItem(id: 22, ean: 908969867575, sku: "VBNM5467238IO", quantity: 1, box: "79", order: InventoryOrder.sampleOrders[0], isInventoried: true),
+        InventoryItem(id: 3, ean: 890806786, sku: "VBN09788967655WE", quantity: 15, box: "8", order: InventoryOrder.sampleOrders[1], isInventoried: false),
+        InventoryItem(id: 4, ean: 98766544342, sku: "TYU67864434755RT", quantity: 0, box: "12", order: InventoryOrder.sampleOrders[2], isInventoried: false)]
 }
