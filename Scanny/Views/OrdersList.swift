@@ -10,6 +10,8 @@ import SwiftData
 
 struct OrdersList: View {
     @Environment(\.modelContext) private var context
+    @Environment(ViewModel.self) private var viewModel
+    
     @Query(sort: \InventoryOrder.id) private var orders: [InventoryOrder]
     
     var body: some View {
@@ -86,6 +88,7 @@ struct OrderView: View {
 #Preview {
     NavigationStack {
         OrdersList()
+            .environment(ViewModel())
             .modelContainer(SampleData.shared.modelContainer)
     }
 }

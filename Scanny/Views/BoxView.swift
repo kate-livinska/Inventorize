@@ -9,43 +9,31 @@ import SwiftUI
 import SwiftData
 
 struct BoxView: View {
-    //@Environment(\.modelContext) private var context
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.modelContext) private var context
     
-    @Query private var item: [InventoryItem]
+    var item: InventoryItem
     
-//    init(scannedCode: String) {
-//        let predicate = #Predicate<InventoryItem> { item in
-//            item.sku == scannedCode
-//        }
-//        
-//        _item = Query(filter: predicate)
-//    }
+    init(item: InventoryItem) {
+        self.item = item
+    }
     
     var body: some View {
-        if item.count == 1 {
-            if item[0].quantity == 0 {
-                Text("Show QuantityEditorView here")
-            } else {
-                VStack {
-                    Text("Box #\(item[0].box)")
-                    Text("Qty: \(item[0].quantity)")
-                    Spacer()
-                    Button("OK".localized) {
-                        withAnimation {
-                            dismiss()
-                        }
-                    }
+        VStack {
+            Text("Box #\(item.box)")
+            Text("Qty: \(item.quantity)")
+            Spacer()
+            Button("OK".localized) {
+                withAnimation {
+                    dismiss()
                 }
-                .padding(25)
             }
-        } else if item.count > 1 {
-            Text("Show SearchBySKUView here")
         }
+        .padding(25)
     }
 }
 
 #Preview {
-    BoxView()
+    BoxView(item: SampleData.shared.item)
         .modelContainer(SampleData.shared.modelContainer)
 }

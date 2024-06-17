@@ -9,10 +9,12 @@ import SwiftUI
 
 struct RootView: View {
     @EnvironmentObject var auth: Auth
+    @Environment(ViewModel.self) private var viewModel
     
     var body: some View {
         if auth.loggedIn {
             OrdersList()
+                .environment(viewModel)
         } else {
             LoginView()
         }
@@ -22,5 +24,6 @@ struct RootView: View {
 #Preview {
     RootView()
         .environmentObject(Auth.shared)
+        .environment(ViewModel())
         .modelContainer(SampleData.shared.modelContainer)
 }

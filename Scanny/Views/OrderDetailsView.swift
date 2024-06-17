@@ -21,12 +21,11 @@ struct OrderDetailsView: View {
     
     init(order: InventoryOrder) {
         self.order = order
-        viewModel.selectedOrder = order
     }
     
     var body: some View {
         VStack {
-            ScannerView()
+            ScannerView(orderID: order.id)
             Divider()
             if sortedItems.count == 0 {
                 Text("No items")
@@ -52,6 +51,7 @@ struct OrderDetailsView: View {
                 print("Order tapped")
                 order.wasOpened = true
                 await DataService.saveItems(modelContext: context, order: order)
+                viewModel.selectedOrder = order
             }
         }
     }

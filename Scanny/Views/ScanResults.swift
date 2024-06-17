@@ -9,31 +9,36 @@ import SwiftUI
 import SwiftData
 
 struct ScanResults: View {
-    @Environment(ViewModel.self) private var viewModel
     @Environment(\.modelContext) private var context
+    private var selectedOrderID: Int
+    @State private var searchText: String = ""
+    
     @Query private var items: [InventoryItem]
     
-    init() {
-        let selectedOrderID: Int = viewModel.selectedOrder!.id
-        let searchText = viewModel.searchText
-        let predicate = #Predicate<InventoryItem> { $0.ean.description.contains(searchText) && $0.order.id == selectedOrderID }
+    init(orderID: Int, searchText: String) {
+        self.selectedOrderID = orderID
+        let predicate = #Predicate<InventoryItem> {
+            $0.ean.contains(searchText)
+            &&
+            $0.order.id == selectedOrderID
+        }
         
         _items = Query(filter: predicate)
     }
     
     var body: some View {
         if items.isEmpty || items.count > 1 {
-            SearchBySKU()
+            SearchBySKU(searchText: searchText, orderID: selectedOrderID)
+                .searchable(text: $searchText)
         } else if items[0].quantity == 0 {
             //EditQuantity
         } else {
-            BoxView()
+            BoxView(item: items[0])
         }
     }
 }
 
 #Preview {
-    ScanResults()
-        .environment(ViewModel())
+    ScanResults(orderID: 1, searchText: "VBN")
         .modelContainer(SampleData.shared.modelContainer)
 }

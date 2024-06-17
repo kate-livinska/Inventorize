@@ -59,4 +59,8 @@ class SampleData {
     var order: InventoryOrder {
         InventoryOrder.sampleOrders[0]
     }
+    
+    var item: InventoryItem {
+        InventoryItem.sampleData[0]
+    }
 }

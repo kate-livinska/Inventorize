@@ -9,26 +9,34 @@ import SwiftUI
 import SwiftData
 
 struct SearchBySKU: View {
-    @Environment(ViewModel.self) private var viewModel
     @Environment(\.modelContext) private var context
     @Query private var items: [InventoryItem]
     
-    init() {
-        let selectedOrderID: Int = viewModel.selectedOrder!.id
-        let searchText = viewModel.searchText
-        let predicate = #Predicate<InventoryItem> { $0.sku.contains(searchText) && $0.order.id == selectedOrderID }
-        
+    init(
+        searchText: String,
+        orderID: Int
+    ) {
+        let predicate = #Predicate<InventoryItem> {
+            $0.sku.contains(searchText)
+            &&
+            $0.order.id == orderID
+        }
         _items = Query(filter: predicate)
     }
     
     var body: some View {
-       Text("Search by SKU")
+        VStack {
+            Text("Search by SKU")
+            List(items) {
+                ItemView($0)
+            }
+        }
+        
         
     }
 }
 
 #Preview {
-    SearchBySKU()
-        .environment(ViewModel())
+    SearchBySKU(searchText: "VBN", orderID: 1)
         .modelContainer(SampleData.shared.modelContainer)
 }
