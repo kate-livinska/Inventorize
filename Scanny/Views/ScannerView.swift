@@ -10,35 +10,30 @@ import CodeScanner
 import SwiftData
 
 struct ScannerView: View {
-    //@Environment(\.modelContext) private var context
-    @State private var isPresentinBoxViewPopover = false
-    @State private var scannedCode: PopoverModel?
+    @Environment(ViewModel.self) private var viewModel
+    @Environment(\.modelContext) private var context
     
-    @State private var isItemFound = false
-    @State private var isQuantityIndicated = true
+    @State private var isPresentinBoxViewPopover = false
     
     var body: some View {
         CodeScannerView(codeTypes: [.ean8, .ean13, .code128, .upce], simulatedData: "item2_sku") { response in
             switch response {
             case .success(let result):
-                scannedCode = PopoverModel(code: result.string)
-                //isPresentinBoxViewPopover = true
+                viewModel.searchText = result.string
+                isPresentinBoxViewPopover = true
             case .failure(let error):
                 print("Scanning failed: \(error.localizedDescription)")
             }
         }
-        .sheet(item: $scannedCode) { detail in
-            BoxView(scannedCode: detail.code)
+        .sheet(isPresented: $isPresentinBoxViewPopover) {
+            ScanResults()
         }
         .interactiveDismissDisabled() //Prevent people from dragging the sheet down to dismiss it.
     }
 }
 
-struct PopoverModel: Identifiable {
-    var id: String { code }
-    let code: String
-}
-
 #Preview {
     ScannerView()
+        .environment(ViewModel())
+        .modelContainer(SampleData.shared.modelContainer)
 }

@@ -14,13 +14,13 @@ struct BoxView: View {
     
     @Query private var item: [InventoryItem]
     
-    init(scannedCode: String) {
-        let predicate = #Predicate<InventoryItem> { item in
-            item.sku == scannedCode
-        }
-        
-        _item = Query(filter: predicate)
-    }
+//    init(scannedCode: String) {
+//        let predicate = #Predicate<InventoryItem> { item in
+//            item.sku == scannedCode
+//        }
+//        
+//        _item = Query(filter: predicate)
+//    }
     
     var body: some View {
         if item.count == 1 {
@@ -46,6 +46,6 @@ struct BoxView: View {
 }
 
 #Preview {
-    BoxView(scannedCode: "VBN09788967655WE")
+    BoxView()
         .modelContainer(SampleData.shared.modelContainer)
 }

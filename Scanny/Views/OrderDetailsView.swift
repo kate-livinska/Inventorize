@@ -11,6 +11,7 @@ import SwiftData
 struct OrderDetailsView: View {
     var order: InventoryOrder
     @Environment(\.modelContext) private var context
+    @Environment(ViewModel.self) private var viewModel
     
     var sortedItems: [InventoryItem] {
         order.orderItems.sorted { first, second in
@@ -20,6 +21,7 @@ struct OrderDetailsView: View {
     
     init(order: InventoryOrder) {
         self.order = order
+        viewModel.selectedOrder = order
     }
     
     var body: some View {
@@ -87,5 +89,6 @@ struct ItemView: View {
     NavigationStack {
         OrderDetailsView(order: SampleData.shared.order)
             .modelContainer(SampleData.shared.modelContainer)
+            .environment(ViewModel())
     }
 }
