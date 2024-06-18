@@ -27,10 +27,22 @@
     "Box: %@" : {
 
     },
+    "Cancel" : {
+
+    },
     "Delete Data" : {
 
     },
+    "Done" : {
+
+    },
+    "Edit Quantity" : {
+
+    },
     "Email is not valid." : {
+
+    },
+    "Enter correct quantity" : {
 
     },
     "Login.LoginButton.Title" : {

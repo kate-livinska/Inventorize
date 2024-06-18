@@ -9,8 +9,8 @@ import SwiftUI
 import SwiftData
 
 struct BoxView: View {
-    @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var context
+    @State private var showOrderDetails = false
     
     var item: InventoryItem
     
@@ -24,10 +24,11 @@ struct BoxView: View {
             Text("Qty: \(item.quantity)")
             Spacer()
             Button("OK".localized) {
-                withAnimation {
-                    dismiss()
-                }
+                showOrderDetails = true
             }
+        }
+        .navigationDestination(isPresented: $showOrderDetails) {
+            OrderDetailsView(order: item.order)
         }
         .padding(25)
     }

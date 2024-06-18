@@ -27,12 +27,40 @@ struct SearchBySKU: View {
     var body: some View {
         VStack {
             Text("Search by SKU")
-            List(items) {
-                ItemView($0)
+            List(items) { item in
+                NavigationLink {
+                    if item.quantity == 0 {
+                        EditQuantity(item: item)
+                    } else {
+                        BoxView(item: item)
+                    }
+                } label: {
+                    ItemSKU(item)
+                        .padding(1)
+                }
             }
+            .listStyle(.plain)
+//            .scrollContentBackground(.hidden)
+//                        .background(.linearGradient(colors: [.green, .white], startPoint: .top, endPoint: .bottom))
         }
         
         
+        
+    }
+}
+
+struct ItemSKU: View {
+    let item: InventoryItem
+    
+    init(_ item: InventoryItem) {
+        self.item = item
+    }
+    
+    var body: some View {
+        HStack {
+            Text(item.sku)
+            Text(item.eanAsString)
+        }
     }
 }
 

@@ -15,6 +15,9 @@ struct ScanResults: View {
     
     @Query private var items: [InventoryItem]
     
+    @State private var isPresentedEditQuantity = false
+    @State private var isPresentedBoxView = false
+    
     init(orderID: Int, searchText: String) {
         self.selectedOrderID = orderID
         let predicate = #Predicate<InventoryItem> {
@@ -24,17 +27,24 @@ struct ScanResults: View {
         }
         
         _items = Query(filter: predicate)
+        
+        if items.count == 1 && items[0].quantity == 0 {
+            isPresentedEditQuantity = true
+        } else if items.count == 1 {
+            isPresentedBoxView = true
+        }
+        
     }
     
     var body: some View {
-        if items.isEmpty || items.count > 1 {
-            SearchBySKU(searchText: searchText, orderID: selectedOrderID)
-                .searchable(text: $searchText)
-        } else if items[0].quantity == 0 {
-            //EditQuantity
-        } else {
-            BoxView(item: items[0])
-        }
+        SearchBySKU(searchText: searchText, orderID: selectedOrderID)
+            .searchable(text: $searchText)
+            .fullScreenCover(isPresented: $isPresentedEditQuantity) {
+                EditQuantity(item: items[0])
+            }
+            .fullScreenCover(isPresented: $isPresentedBoxView) {
+                BoxView(item: items[0])
+            }
     }
 }
 

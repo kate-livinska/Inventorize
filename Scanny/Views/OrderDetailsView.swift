@@ -27,6 +27,8 @@ struct OrderDetailsView: View {
         VStack {
             ScannerView(orderID: order.id)
             Divider()
+                .frame(maxHeight: 2)
+                .overlay(Color.secondary)
             if sortedItems.count == 0 {
                 Text("No items")
             }
@@ -34,16 +36,17 @@ struct OrderDetailsView: View {
                 ItemView($0)
             }
             .listStyle(.plain)
+            .scrollContentBackground(.hidden)
+            .background(RoundedRectangle(cornerRadius: 15)
+                .foregroundStyle(.linearGradient(colors: [.white, .teal.opacity(0.5)], startPoint: .center, endPoint: .bottom)))
+//            .background(.linearGradient(colors: [.white, .teal.opacity(0.5)], startPoint: .center, endPoint: .bottom), ignoresSafeAreaEdges: .vertical)
             Button(action: {
-                do {
-                    try context.delete(model: InventoryItem.self)
-                } catch {
-                    print("Failed to delete.")
-                }
+                //Send items to server
             }, label: {
-                Text("Delete Data")
+                Text("Send to Server".localized)
             })
         }
+        
         //make the items list not refreshable
         .environment(\EnvironmentValues.refresh as! WritableKeyPath<EnvironmentValues, RefreshAction?>, nil)
         .task {
@@ -71,7 +74,7 @@ struct ItemView: View {
                 Image(systemName: "checkmark.circle")
             }
             VStack(alignment: .leading) {
-                Text("\(String(item.id)) EAN: \(String(item.ean))")
+                Text("\(String(item.id)) EAN: \(item.eanAsString)")
                 Text("SKU: \(String(item.sku))")
             }
             Spacer()
@@ -81,7 +84,9 @@ struct ItemView: View {
                     .fontWeight(.bold)
             }
         }
-        .listRowBackground(item.isInventoried ? Color.green : Color.clear)
+        .listRowBackground(RoundedRectangle(cornerRadius: 15)
+            .background(.clear)
+            .foregroundColor(item.isInventoried ? Color.green.opacity(0.4) : Color.clear))
     }
 }
 
