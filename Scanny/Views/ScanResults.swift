@@ -18,7 +18,7 @@ struct ScanResults: View {
     @State private var isPresentedEditQuantity = false
     @State private var isPresentedBoxView = false
     
-    init(orderID: Int, searchText: String) {
+    init(for orderID: Int, searchText: String) {
         self.selectedOrderID = orderID
         let predicate = #Predicate<InventoryItem> {
             $0.eanAsString.contains(searchText)
@@ -49,6 +49,6 @@ struct ScanResults: View {
 }
 
 #Preview {
-    ScanResults(orderID: 1, searchText: "7589679780")
+    ScanResults(for: 1, searchText: "7589679780")
         .modelContainer(SampleData.shared.modelContainer)
 }

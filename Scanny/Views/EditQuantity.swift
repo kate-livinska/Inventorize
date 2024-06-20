@@ -30,7 +30,7 @@ struct EditQuantity: View {
         .navigationTitle("Edit Quantity")
         .navigationBarTitleDisplayMode(.inline)
         .navigationDestination(isPresented: $showOrderDetails) {
-            OrderDetailsView(order: item.order)
+            OrderDetailsView(item.order)
         }
         .navigationDestination(isPresented: $showBoxView) {
             BoxView(item: item)
@@ -50,7 +50,6 @@ struct EditQuantity: View {
                 }
             }
         }
-        
     }
 }
 

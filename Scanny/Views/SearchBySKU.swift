@@ -40,8 +40,6 @@ struct SearchBySKU: View {
                 }
             }
             .listStyle(.plain)
-//            .scrollContentBackground(.hidden)
-//                        .background(.linearGradient(colors: [.green, .white], startPoint: .top, endPoint: .bottom))
         }
         
         

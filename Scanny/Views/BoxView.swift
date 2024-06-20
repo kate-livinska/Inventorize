@@ -28,7 +28,7 @@ struct BoxView: View {
             }
         }
         .navigationDestination(isPresented: $showOrderDetails) {
-            OrderDetailsView(order: item.order)
+            OrderDetailsView(item.order)
         }
         .padding(25)
     }

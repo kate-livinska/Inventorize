@@ -11,7 +11,6 @@ import SwiftData
 struct OrderDetailsView: View {
     var order: InventoryOrder
     @Environment(\.modelContext) private var context
-    @Environment(ViewModel.self) private var viewModel
     
     var sortedItems: [InventoryItem] {
         order.orderItems.sorted { first, second in
@@ -19,7 +18,7 @@ struct OrderDetailsView: View {
         }
     }
     
-    init(order: InventoryOrder) {
+    init(_ order: InventoryOrder) {
         self.order = order
     }
     
@@ -28,7 +27,7 @@ struct OrderDetailsView: View {
             ScannerView(orderID: order.id)
             Divider()
                 .frame(maxHeight: 2)
-                .overlay(Color.secondary)
+                .overlay(Color.teal)
             if sortedItems.count == 0 {
                 Text("No items")
             }
@@ -38,14 +37,15 @@ struct OrderDetailsView: View {
             .listStyle(.plain)
             .scrollContentBackground(.hidden)
             .background(RoundedRectangle(cornerRadius: 15)
-                .foregroundStyle(.linearGradient(colors: [.white, .teal.opacity(0.5)], startPoint: .center, endPoint: .bottom)))
-//            .background(.linearGradient(colors: [.white, .teal.opacity(0.5)], startPoint: .center, endPoint: .bottom), ignoresSafeAreaEdges: .vertical)
+                .foregroundStyle(.linearGradient(colors: [.teal.opacity(0.15), .white], startPoint: .top, endPoint: .bottom)))
             Button(action: {
                 //Send items to server
             }, label: {
                 Text("Send to Server".localized)
             })
         }
+        .navigationTitle("\(order.name) \(String(order.id))")
+        .navigationBarTitleDisplayMode(.inline)
         
         //make the items list not refreshable
         .environment(\EnvironmentValues.refresh as! WritableKeyPath<EnvironmentValues, RefreshAction?>, nil)
@@ -54,7 +54,6 @@ struct OrderDetailsView: View {
                 print("Order tapped")
                 order.wasOpened = true
                 await DataService.saveItems(modelContext: context, order: order)
-                viewModel.selectedOrder = order
             }
         }
     }
@@ -84,7 +83,7 @@ struct ItemView: View {
                     .fontWeight(.bold)
             }
         }
-        .listRowBackground(RoundedRectangle(cornerRadius: 15)
+        .listRowBackground(RoundedRectangle(cornerRadius: 4)
             .background(.clear)
             .foregroundColor(item.isInventoried ? Color.green.opacity(0.4) : Color.clear))
     }
@@ -92,8 +91,7 @@ struct ItemView: View {
 
 #Preview {
     NavigationStack {
-        OrderDetailsView(order: SampleData.shared.order)
+        OrderDetailsView(SampleData.shared.order)
             .modelContainer(SampleData.shared.modelContainer)
-            .environment(ViewModel())
     }
 }

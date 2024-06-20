@@ -10,22 +10,14 @@ import SwiftData
 
 struct OrdersList: View {
     @Environment(\.modelContext) private var context
-    @Environment(ViewModel.self) private var viewModel
+    @State private var path = [String]()
     
     @Query(sort: \InventoryOrder.id) private var orders: [InventoryOrder]
     
     var body: some View {
-        NavigationSplitView {
+        NavigationStack(path: $path) {
             VStack {
                 ordersList
-                    .navigationTitle("OrdersListView.Orders.Title".localized)
-                    .toolbar {
-                        ToolbarItem(placement: .topBarTrailing) {
-                            Button("OrdersListView.LogoutButton.Title".localized) {
-                                Auth.shared.logout()
-                            }
-                        }
-                    }
                 Button(action: {
                     do {
                         try context.delete(model: InventoryOrder.self)
@@ -37,10 +29,21 @@ struct OrdersList: View {
                     Text("Delete Data")
                 })
             }
+            .navigationTitle("OrdersListView.Orders.Title".localized)
+            .navigationDestination(for: String.self) { id in
+                if let intID = Int(id), let order = orders.first(where: { $0.id == intID }) {
+                    OrderDetailsView(order)
+                }
+            }
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("OrdersListView.LogoutButton.Title".localized) {
+                        Auth.shared.logout()
+                    }
+                }
+            }
         }
-        detail: {
-            Text("Select an order")
-        }
+        
         .padding()
         .refreshable {
             await DataService.refreshOrders(modelContext: context)
@@ -54,11 +57,7 @@ struct OrdersList: View {
     
     var ordersList: some View {
         List(orders) { order in
-            NavigationLink {
-                OrderDetailsView(order: order)
-                    .navigationTitle("\(order.name) \(String(order.id))")
-                    .navigationBarTitleDisplayMode(.inline)
-            } label: {
+            NavigationLink(value: String(order.id)) {
                 OrderView(order)
                     .padding(1)
             }
@@ -88,7 +87,6 @@ struct OrderView: View {
 #Preview {
     NavigationStack {
         OrdersList()
-            .environment(ViewModel())
             .modelContainer(SampleData.shared.modelContainer)
     }
 }
