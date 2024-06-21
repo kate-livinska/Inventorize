@@ -38,6 +38,8 @@ struct OrderDetailsView: View {
                 await DataService.saveItems(modelContext: context, order: order)
             }
         }
+        //make the view not refreshable
+        .environment(\EnvironmentValues.refresh as! WritableKeyPath<EnvironmentValues, RefreshAction?>, nil)
     }
 }
 

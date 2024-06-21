@@ -32,8 +32,6 @@ struct ItemsList: View {
         .scrollContentBackground(.hidden)
         .background(RoundedRectangle(cornerRadius: 15)
             .foregroundStyle(.linearGradient(colors: [.teal.opacity(0.15), .white], startPoint: .top, endPoint: .bottom)))
-        //make the items list not refreshable
-        .environment(\EnvironmentValues.refresh as! WritableKeyPath<EnvironmentValues, RefreshAction?>, nil)
     }
 }
 
