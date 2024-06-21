@@ -10,17 +10,21 @@ import SwiftData
 
 struct OrdersList: View {
     @Environment(\.modelContext) private var context
-    @State private var path = [String]()
+    @StateObject private var navigationManager = NavigationManager()
     
     @Query(sort: \InventoryOrder.id) private var orders: [InventoryOrder]
     
+    @State var selectedOrder: InventoryOrder? = nil
+    
     var body: some View {
-        NavigationStack(path: $path) {
+        NavigationStack(path: $navigationManager.path) {
             VStack {
-                List(orders) { order in
-                    NavigationLink(value: String(order.id)) {
-                        OrderView(order)
-                            .padding(1)
+                List(selection: $selectedOrder) {
+                    ForEach(orders) { order in
+                        NavigationLink(value: Destination.details(order)) {
+                            OrderView(order)
+                                .padding(1)
+                        }
                     }
                 }
                 .listStyle(.plain)
@@ -36,11 +40,23 @@ struct OrdersList: View {
                 })
             }
             .navigationTitle("OrdersListView.Orders.Title".localized)
-            .navigationDestination(for: String.self) { id in
-                if let intID = Int(id), let order = orders.first(where: { $0.id == intID }) {
+            .navigationDestination(for: Destination.self) { destination in
+                switch destination {
+                case .details(let order):
                     OrderDetailsView(order)
+                case .boxView(let item):
+                    BoxView(item: item)
+                case .editQuantity(let item):
+                    EditQuantity(item: item)
+                case .scanner(let id):
+                    ScannerView(orderID: id)
                 }
             }
+//            .navigationDestination(for: String.self) { id in
+//                if let intID = Int(id), let order = orders.first(where: { $0.id == intID }) {
+//                    OrderDetailsView(order)
+//                }
+//            }
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("OrdersListView.LogoutButton.Title".localized) {
@@ -49,6 +65,7 @@ struct OrdersList: View {
                 }
             }
         }
+        .environmentObject(navigationManager)
         .padding()
         .refreshable {
             await DataService.refreshOrders(modelContext: context)

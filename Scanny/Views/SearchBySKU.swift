@@ -9,8 +9,12 @@ import SwiftUI
 import SwiftData
 
 struct SearchBySKU: View {
-    @Environment(\.modelContext) private var context
+    //@Environment(\.modelContext) private var context
+    @EnvironmentObject var navigationManager: NavigationManager
+    
     @Query private var items: [InventoryItem]
+    
+    @State private var currentItem: InventoryItem?
     
     init(
         searchText: String,
@@ -27,17 +31,28 @@ struct SearchBySKU: View {
     var body: some View {
         VStack {
             Text("Search by SKU")
-            List(items) { item in
-                NavigationLink {
+            List(selection: $currentItem) {
+                ForEach(items) { item in
                     if item.quantity == 0 {
-                        EditQuantity(item: item)
+                        NavigationLink(value: Destination.editQuantity(item)) {
+                            ItemSKU(item)
+                        }
                     } else {
-                        BoxView(item: item)
+                        NavigationLink(value: Destination.boxView(item)) {
+                            ItemSKU(item)
+                        }
                     }
-                } label: {
-                    ItemSKU(item)
-                        .padding(1)
-                }
+            }
+//                NavigationLink {
+//                    if item.quantity == 0 {
+//                        EditQuantity(item: item)
+//                    } else {
+//                        BoxView(item: item)
+//                    }
+//                } label: {
+//                    ItemSKU(item)
+//                        .padding(1)
+//                }
             }
             .listStyle(.plain)
         }
@@ -65,4 +80,5 @@ struct ItemSKU: View {
 #Preview {
     SearchBySKU(searchText: "VBN", orderID: 1)
         .modelContainer(SampleData.shared.modelContainer)
+        .environmentObject(NavigationManager())
 }

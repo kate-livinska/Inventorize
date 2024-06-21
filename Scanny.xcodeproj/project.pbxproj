@@ -23,7 +23,6 @@
 		4138B4A22BDE269100DC742E /* BoolExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4138B4A12BDE269100DC742E /* BoolExtension.swift */; };
 		4193810C2B6276EC0004FC91 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193810B2B6276EC0004FC91 /* DataService.swift */; };
 		4193810E2B6287780004FC91 /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193810D2B6287780004FC91 /* ScannerView.swift */; };
-		419903652C198BB8001BFCF5 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 419903642C198BB8001BFCF5 /* CodeScanner */; };
 		419903672C1C4349001BFCF5 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419903662C1C4349001BFCF5 /* ViewModel.swift */; };
 		419903692C1C4A09001BFCF5 /* SearchBySKU.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419903682C1C4A09001BFCF5 /* SearchBySKU.swift */; };
 		41A6E0282B6CD21900D666D1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A6E0272B6CD21900D666D1 /* ContentView.swift */; };
@@ -36,6 +35,8 @@
 		41B839662C201EA60084A2E3 /* ScanResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B839652C201EA60084A2E3 /* ScanResults.swift */; };
 		41B839682C20834D0084A2E3 /* EditQuantity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B839672C20834D0084A2E3 /* EditQuantity.swift */; };
 		41B8396A2C25917B0084A2E3 /* ItemsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B839692C25917B0084A2E3 /* ItemsList.swift */; };
+		41B8396C2C25963B0084A2E3 /* NavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B8396B2C25963B0084A2E3 /* NavigationManager.swift */; };
+		41B8396F2C25E3B60084A2E3 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 41B8396E2C25E3B60084A2E3 /* CodeScanner */; };
 		41ED6F772B5527B2002A7F60 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41ED6F762B5527B2002A7F60 /* KeychainManager.swift */; };
 		41ED6F7C2B592EA3002A7F60 /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41ED6F7B2B592EA3002A7F60 /* Auth.swift */; };
 		41ED6F802B597C62002A7F60 /* OrdersList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41ED6F7F2B597C62002A7F60 /* OrdersList.swift */; };
@@ -71,6 +72,7 @@
 		41B839652C201EA60084A2E3 /* ScanResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanResults.swift; sourceTree = "<group>"; };
 		41B839672C20834D0084A2E3 /* EditQuantity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditQuantity.swift; sourceTree = "<group>"; };
 		41B839692C25917B0084A2E3 /* ItemsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsList.swift; sourceTree = "<group>"; };
+		41B8396B2C25963B0084A2E3 /* NavigationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationManager.swift; sourceTree = "<group>"; };
 		41ED6F762B5527B2002A7F60 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		41ED6F7B2B592EA3002A7F60 /* Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
 		41ED6F7F2B597C62002A7F60 /* OrdersList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersList.swift; sourceTree = "<group>"; };
@@ -81,7 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				419903652C198BB8001BFCF5 /* CodeScanner in Frameworks */,
+				41B8396F2C25E3B60084A2E3 /* CodeScanner in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,6 +216,7 @@
 		41ED6F7A2B592E83002A7F60 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				41B8396B2C25963B0084A2E3 /* NavigationManager.swift */,
 				41ED6F762B5527B2002A7F60 /* KeychainManager.swift */,
 				41ED6F7B2B592EA3002A7F60 /* Auth.swift */,
 				41A6E02B2B7238AC00D666D1 /* LoginService.swift */,
@@ -239,7 +242,7 @@
 			);
 			name = Scanny;
 			packageProductDependencies = (
-				419903642C198BB8001BFCF5 /* CodeScanner */,
+				41B8396E2C25E3B60084A2E3 /* CodeScanner */,
 			);
 			productName = Scanny;
 			productReference = 411D51882B4D3EF8008650EF /* Scanny.app */;
@@ -271,7 +274,7 @@
 			);
 			mainGroup = 411D517F2B4D3EF8008650EF;
 			packageReferences = (
-				419903632C198BB8001BFCF5 /* XCRemoteSwiftPackageReference "CodeScanner" */,
+				41B8396D2C25E3B60084A2E3 /* XCRemoteSwiftPackageReference "CodeScanner" */,
 			);
 			productRefGroup = 411D51892B4D3EF8008650EF /* Products */;
 			projectDirPath = "";
@@ -313,6 +316,7 @@
 				411D51B12B50133A008650EF /* OrderData.swift in Sources */,
 				41B6B1E12BF3F6DA00B45515 /* InventoryOrder.swift in Sources */,
 				41A6E02C2B7238AC00D666D1 /* LoginService.swift in Sources */,
+				41B8396C2C25963B0084A2E3 /* NavigationManager.swift in Sources */,
 				41B6B1D52BE8DA9000B45515 /* BoxView.swift in Sources */,
 				41A6E02A2B722B9E00D666D1 /* NetworkBase.swift in Sources */,
 				41ED6F7C2B592EA3002A7F60 /* Auth.swift in Sources */,
@@ -553,7 +557,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		419903632C198BB8001BFCF5 /* XCRemoteSwiftPackageReference "CodeScanner" */ = {
+		41B8396D2C25E3B60084A2E3 /* XCRemoteSwiftPackageReference "CodeScanner" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/twostraws/CodeScanner";
 			requirement = {
@@ -564,9 +568,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		419903642C198BB8001BFCF5 /* CodeScanner */ = {
+		41B8396E2C25E3B60084A2E3 /* CodeScanner */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 419903632C198BB8001BFCF5 /* XCRemoteSwiftPackageReference "CodeScanner" */;
+			package = 41B8396D2C25E3B60084A2E3 /* XCRemoteSwiftPackageReference "CodeScanner" */;
 			productName = CodeScanner;
 		};
 /* End XCSwiftPackageProductDependency section */

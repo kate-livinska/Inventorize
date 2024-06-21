@@ -9,12 +9,13 @@ import SwiftUI
 
 struct EditQuantity: View {
     @Environment(\.dismiss) private var dismiss
-    @Environment(\.modelContext) private var context
+    //@Environment(\.modelContext) private var context
+    @EnvironmentObject private var navigationManager: NavigationManager
     
     private var item: InventoryItem
     @State private var newQuantity: Int?
-    @State private var showBoxView = false
-    @State private var showOrderDetails = false
+//    @State private var showBoxView = false
+//    @State private var showOrderDetails = false
     
     init(item: InventoryItem) {
         self.item = item
@@ -29,24 +30,26 @@ struct EditQuantity: View {
         }
         .navigationTitle("Edit Quantity")
         .navigationBarTitleDisplayMode(.inline)
-        .navigationDestination(isPresented: $showOrderDetails) {
-            OrderDetailsView(item.order)
-        }
-        .navigationDestination(isPresented: $showBoxView) {
-            BoxView(item: item)
-        }
+//        .navigationDestination(isPresented: $showOrderDetails) {
+//            OrderDetailsView(item.order)
+//        }
+//        .navigationDestination(isPresented: $showBoxView) {
+//            BoxView(item: item)
+//        }
         .toolbar {
             ToolbarItem(placement: .confirmationAction) {
                 Button("Done") {
                     if let newQuantity {
                         item.quantity = newQuantity
                     }
-                    showBoxView = true
+                    navigationManager.path.append(.boxView(item))
                 }
             }
             ToolbarItem(placement: .cancellationAction) {
                 Button("Cancel") {
-                    showOrderDetails = true
+                    //showOrderDetails = true
+                    navigationManager.goToOrdersList()
+                    navigationManager.path.append(.details(item.order))
                 }
             }
         }
@@ -57,5 +60,6 @@ struct EditQuantity: View {
     NavigationStack {
         EditQuantity(item: SampleData.shared.item)
             .modelContainer(SampleData.shared.modelContainer)
+            .environmentObject(NavigationManager())
     }
 }

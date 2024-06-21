@@ -10,7 +10,9 @@ import SwiftData
 
 struct BoxView: View {
     @Environment(\.modelContext) private var context
-    @State private var showOrderDetails = false
+    @EnvironmentObject private var navigationManager: NavigationManager
+    
+    //@State private var showOrderDetails = false
     
     var item: InventoryItem
     
@@ -24,12 +26,14 @@ struct BoxView: View {
             Text("Qty: \(item.quantity)")
             Spacer()
             Button("OK".localized) {
-                showOrderDetails = true
+                navigationManager.goToOrdersList()
+                navigationManager.path.append(.details(item.order))
+                //showOrderDetails = true
             }
         }
-        .navigationDestination(isPresented: $showOrderDetails) {
-            OrderDetailsView(item.order)
-        }
+//        .navigationDestination(isPresented: $showOrderDetails) {
+//            OrderDetailsView(item.order)
+//        }
         .padding(25)
     }
 }
@@ -37,4 +41,5 @@ struct BoxView: View {
 #Preview {
     BoxView(item: SampleData.shared.item)
         .modelContainer(SampleData.shared.modelContainer)
+        .environmentObject(NavigationManager())
 }

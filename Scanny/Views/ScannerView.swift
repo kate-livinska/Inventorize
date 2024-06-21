@@ -10,7 +10,7 @@ import CodeScanner
 import SwiftData
 
 struct ScannerView: View {
-    @Environment(\.modelContext) private var context
+    //@Environment(\.modelContext) private var context
     
     var orderID: Int
     
@@ -21,6 +21,14 @@ struct ScannerView: View {
         VStack {
             if let code = scannedCode {
                 ScanResults(for: orderID, searchText: code)
+            }
+            if !isPresentingScanner {
+                Button(action: {
+                    scannedCode = nil
+                    isPresentingScanner = true
+                }, label: {
+                    Text("Start Scan".localized)
+                })
             }
         }
         .sheet(isPresented: $isPresentingScanner) {
@@ -41,4 +49,5 @@ struct ScannerView: View {
 #Preview {
     ScannerView(orderID: 1)
         .modelContainer(SampleData.shared.modelContainer)
+        .environmentObject(NavigationManager())
 }

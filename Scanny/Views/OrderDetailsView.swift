@@ -12,12 +12,6 @@ struct OrderDetailsView: View {
     var order: InventoryOrder
     @Environment(\.modelContext) private var context
     
-    var sortedItems: [InventoryItem] {
-        order.orderItems.sorted { first, second in
-            (first.isInventoried, first.id) < (second.isInventoried, second.id)
-        }
-    }
-    
     init(_ order: InventoryOrder) {
         self.order = order
     }
@@ -28,7 +22,7 @@ struct OrderDetailsView: View {
             Divider()
                 .frame(maxHeight: 2)
                 .overlay(Color.teal)
-            ItemsList(sortedItems)
+            ItemsList(order)
             Button(action: {
                 //Send items to server
             }, label: {
@@ -51,5 +45,6 @@ struct OrderDetailsView: View {
     NavigationStack {
         OrderDetailsView(SampleData.shared.order)
             .modelContainer(SampleData.shared.modelContainer)
+            .environmentObject(NavigationManager())
     }
 }

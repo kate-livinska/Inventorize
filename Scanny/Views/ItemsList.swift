@@ -9,17 +9,23 @@ import SwiftUI
 import SwiftData
 
 struct ItemsList: View {
-    var items: [InventoryItem]
+    var order: InventoryOrder
     
-    init(_ items: [InventoryItem]) {
-        self.items = items
+    var sortedItems: [InventoryItem] {
+        order.orderItems.sorted { first, second in
+            (first.isInventoried, first.id) < (second.isInventoried, second.id)
+        }
+    }
+    
+    init(_ order: InventoryOrder) {
+        self.order = order
     }
     
     var body: some View {
-        if items.count == 0 {
+        if sortedItems.count == 0 {
             Text("No items")
         }
-        List(items) {
+        List(sortedItems) {
             ItemView($0)
         }
         .listStyle(.plain)
@@ -62,7 +68,7 @@ struct ItemView: View {
 
 #Preview {
     NavigationStack {
-        ItemsList(SampleData.shared.order.orderItems)
+        ItemsList(SampleData.shared.order)
             .modelContainer(SampleData.shared.modelContainer)
     }
 }
