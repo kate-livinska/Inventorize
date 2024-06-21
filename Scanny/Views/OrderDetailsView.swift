@@ -28,16 +28,7 @@ struct OrderDetailsView: View {
             Divider()
                 .frame(maxHeight: 2)
                 .overlay(Color.teal)
-            if sortedItems.count == 0 {
-                Text("No items")
-            }
-            List(sortedItems) {
-                ItemView($0)
-            }
-            .listStyle(.plain)
-            .scrollContentBackground(.hidden)
-            .background(RoundedRectangle(cornerRadius: 15)
-                .foregroundStyle(.linearGradient(colors: [.teal.opacity(0.15), .white], startPoint: .top, endPoint: .bottom)))
+            ItemsList(sortedItems)
             Button(action: {
                 //Send items to server
             }, label: {
@@ -46,9 +37,6 @@ struct OrderDetailsView: View {
         }
         .navigationTitle("\(order.name) \(String(order.id))")
         .navigationBarTitleDisplayMode(.inline)
-        
-        //make the items list not refreshable
-        .environment(\EnvironmentValues.refresh as! WritableKeyPath<EnvironmentValues, RefreshAction?>, nil)
         .task {
             if !order.wasOpened {
                 print("Order tapped")
@@ -56,36 +44,6 @@ struct OrderDetailsView: View {
                 await DataService.saveItems(modelContext: context, order: order)
             }
         }
-    }
-}
-
-
-struct ItemView: View {
-    let item: InventoryItem
-    
-    init(_ item: InventoryItem) {
-        self.item = item
-    }
-    
-    var body: some View {
-        HStack {
-            if item.isInventoried {
-                Image(systemName: "checkmark.circle")
-            }
-            VStack(alignment: .leading) {
-                Text("\(String(item.id)) EAN: \(item.eanAsString)")
-                Text("SKU: \(String(item.sku))")
-            }
-            Spacer()
-            VStack(alignment: .trailing) {
-                Text("Qty: \(String(item.quantity))")
-                Text("Box: \(String(item.box))")
-                    .fontWeight(.bold)
-            }
-        }
-        .listRowBackground(RoundedRectangle(cornerRadius: 4)
-            .background(.clear)
-            .foregroundColor(item.isInventoried ? Color.green.opacity(0.4) : Color.clear))
     }
 }
 

@@ -17,7 +17,13 @@ struct OrdersList: View {
     var body: some View {
         NavigationStack(path: $path) {
             VStack {
-                ordersList
+                List(orders) { order in
+                    NavigationLink(value: String(order.id)) {
+                        OrderView(order)
+                            .padding(1)
+                    }
+                }
+                .listStyle(.plain)
                 Button(action: {
                     do {
                         try context.delete(model: InventoryOrder.self)
@@ -43,7 +49,6 @@ struct OrdersList: View {
                 }
             }
         }
-        
         .padding()
         .refreshable {
             await DataService.refreshOrders(modelContext: context)
@@ -53,16 +58,6 @@ struct OrdersList: View {
                 ContentUnavailableView("Refresh to load orders", systemImage: "globe")
             }
         }
-    }
-    
-    var ordersList: some View {
-        List(orders) { order in
-            NavigationLink(value: String(order.id)) {
-                OrderView(order)
-                    .padding(1)
-            }
-        }
-        .listStyle(.plain)
     }
 }
                         
