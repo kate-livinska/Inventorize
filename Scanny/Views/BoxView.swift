@@ -21,7 +21,7 @@ struct BoxView: View {
     var body: some View {
         VStack {
             Text("Box #\(item.box)")
-            Text("Qty: \(item.quantity)")
+            Text("Qty: \(String(item.quantity))")
             Spacer()
             Button("OK".localized) {
                 navigationManager.path = [.details(item.order)]
