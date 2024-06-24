@@ -11,7 +11,7 @@ import SwiftData
 struct OrderDetailsView: View {
     var order: InventoryOrder
     @Environment(\.modelContext) private var context
-    
+   
     init(_ order: InventoryOrder) {
         self.order = order
     }

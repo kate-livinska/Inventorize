@@ -12,8 +12,6 @@ struct BoxView: View {
     @Environment(\.modelContext) private var context
     @EnvironmentObject private var navigationManager: NavigationManager
     
-    //@State private var showOrderDetails = false
-    
     var item: InventoryItem
     
     init(item: InventoryItem) {
@@ -26,14 +24,9 @@ struct BoxView: View {
             Text("Qty: \(item.quantity)")
             Spacer()
             Button("OK".localized) {
-                navigationManager.goToOrdersList()
-                navigationManager.path.append(.details(item.order))
-                //showOrderDetails = true
+                navigationManager.path = [.details(item.order)]
             }
         }
-//        .navigationDestination(isPresented: $showOrderDetails) {
-//            OrderDetailsView(item.order)
-//        }
         .padding(25)
     }
 }

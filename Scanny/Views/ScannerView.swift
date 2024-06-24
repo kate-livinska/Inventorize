@@ -13,36 +13,44 @@ struct ScannerView: View {
     //@Environment(\.modelContext) private var context
     
     var orderID: Int
-    
-    @State private var isPresentingScanner = true
+    @State var showScanner: Bool = true
     @State private var scannedCode: String?
+    
+//    init(orderID: Int, showScanner: Bool) {
+//        self.orderID = orderID
+//        self.showScanner = showScanner
+//    }
     
     var body: some View {
         VStack {
             if let code = scannedCode {
                 ScanResults(for: orderID, searchText: code)
             }
-            if !isPresentingScanner {
+            if !showScanner {
                 Button(action: {
                     scannedCode = nil
-                    isPresentingScanner = true
+                    showScanner = true
                 }, label: {
                     Text("Start Scan".localized)
                 })
             }
         }
-        .sheet(isPresented: $isPresentingScanner) {
+        .sheet(isPresented: $showScanner) {
             CodeScannerView(codeTypes: [.ean8, .ean13, .code128, .upce], simulatedData: "7589679780") { response in
                 switch response {
                 case .success(let result):
                     scannedCode = result.string
-                    isPresentingScanner = false
+                    showScanner = false
                 case .failure(let error):
                     print("Scanning failed: \(error.localizedDescription)")
                 }
             }
         }
         .interactiveDismissDisabled() //Prevent people from dragging the sheet down to dismiss it.
+        .onAppear {
+            scannedCode = nil
+            showScanner = true
+        }
     }
 }
 

@@ -9,13 +9,10 @@ import SwiftUI
 
 struct EditQuantity: View {
     @Environment(\.dismiss) private var dismiss
-    //@Environment(\.modelContext) private var context
     @EnvironmentObject private var navigationManager: NavigationManager
     
     private var item: InventoryItem
     @State private var newQuantity: Int?
-//    @State private var showBoxView = false
-//    @State private var showOrderDetails = false
     
     init(item: InventoryItem) {
         self.item = item
@@ -30,12 +27,6 @@ struct EditQuantity: View {
         }
         .navigationTitle("Edit Quantity")
         .navigationBarTitleDisplayMode(.inline)
-//        .navigationDestination(isPresented: $showOrderDetails) {
-//            OrderDetailsView(item.order)
-//        }
-//        .navigationDestination(isPresented: $showBoxView) {
-//            BoxView(item: item)
-//        }
         .toolbar {
             ToolbarItem(placement: .confirmationAction) {
                 Button("Done") {
@@ -47,9 +38,7 @@ struct EditQuantity: View {
             }
             ToolbarItem(placement: .cancellationAction) {
                 Button("Cancel") {
-                    //showOrderDetails = true
-                    navigationManager.goToOrdersList()
-                    navigationManager.path.append(.details(item.order))
+                    navigationManager.path = [.details(item.order)]
                 }
             }
         }

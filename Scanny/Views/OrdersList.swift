@@ -52,11 +52,6 @@ struct OrdersList: View {
                     ScannerView(orderID: id)
                 }
             }
-//            .navigationDestination(for: String.self) { id in
-//                if let intID = Int(id), let order = orders.first(where: { $0.id == intID }) {
-//                    OrderDetailsView(order)
-//                }
-//            }
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("OrdersListView.LogoutButton.Title".localized) {
