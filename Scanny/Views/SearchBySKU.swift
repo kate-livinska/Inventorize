@@ -24,6 +24,8 @@ struct SearchBySKU: View {
             $0.sku.contains(searchText)
             &&
             $0.order.id == orderID
+            &&
+            !$0.isInventoried
         }
         _items = Query(filter: predicate)
     }
