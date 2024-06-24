@@ -23,6 +23,8 @@ struct ScanResults: View {
             $0.eanAsString.contains(searchText)
             &&
             $0.order.id == selectedOrderID
+            &&
+            !$0.isInventoried
         }
         
         _items = Query(filter: predicate)
